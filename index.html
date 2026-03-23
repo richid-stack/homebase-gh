@@ -1,0 +1,2854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HomeBase Ghana — Find Your Home. Fix Your Home.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;0,700;0,900;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    /* ═══════════════════════════════════════════════════════════
+       HOMEBASE GHANA — Design System
+       Aesthetic: Premium minimal, warm whites, deep charcoal,
+       terracotta accent — feels like a luxury Airbnb x Africa
+    ═══════════════════════════════════════════════════════════ */
+    :root {
+      --clay:    #c8603a;
+      --clay-lt: #e8845f;
+      --clay-pale: #fdf0eb;
+      --ink:     #1a1a2e;
+      --ink-mid: #2d2d44;
+      --ink-lt:  #4a4a6a;
+      --sand:    #f7f4ef;
+      --sand-md: #ede8e0;
+      --sand-dk: #d4cdc2;
+      --white:   #ffffff;
+      --success: #1a7a4a;
+      --success-lt: #e6f4ed;
+      --warning: #c27c0e;
+      --warning-lt: #fef3d0;
+      --danger:  #c0392b;
+      --danger-lt: #fdecea;
+      --blue:    #2563eb;
+      --blue-lt: #dbeafe;
+
+      --shadow-xs: 0 1px 3px rgba(26,26,46,.06);
+      --shadow-sm: 0 2px 8px rgba(26,26,46,.08);
+      --shadow-md: 0 6px 24px rgba(26,26,46,.10);
+      --shadow-lg: 0 16px 48px rgba(26,26,46,.14);
+      --shadow-xl: 0 24px 64px rgba(26,26,46,.18);
+
+      --radius-sm: 8px;
+      --radius:    14px;
+      --radius-lg: 22px;
+      --radius-xl: 32px;
+
+      --font-display: 'Fraunces', serif;
+      --font-body:    'Outfit', sans-serif;
+
+      --nav-h: 72px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--white);
+      color: var(--ink);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── Scrollbar ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--sand-dk); border-radius: 3px; }
+
+    .hidden { display: none !important; }
+
+    /* ═══════════════════════════════════════════════════════════
+       LANDING — NAVIGATION
+    ═══════════════════════════════════════════════════════════ */
+    #landing { min-height: 100vh; background: var(--white); }
+
+    .site-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+      height: var(--nav-h);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 40px;
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(26,26,46,.06);
+      transition: box-shadow .3s;
+    }
+    .site-nav.scrolled { box-shadow: var(--shadow-sm); }
+
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none; cursor: pointer;
+    }
+    .nav-logo-mark {
+      width: 38px; height: 38px;
+      background: var(--ink);
+      border-radius: 10px;
+      display: grid; place-items: center;
+      font-size: 1.1rem;
+      transition: background .2s;
+    }
+    .nav-logo:hover .nav-logo-mark { background: var(--clay); }
+    .nav-logo-name {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+    }
+    .nav-logo-name span { color: var(--clay); }
+
+    .nav-links {
+      display: flex; align-items: center; gap: 6px;
+    }
+    .nav-link {
+      padding: 8px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--ink-lt);
+      cursor: pointer;
+      border: none; background: transparent;
+      transition: all .2s;
+      font-family: var(--font-body);
+      text-decoration: none;
+    }
+    .nav-link:hover { color: var(--ink); background: var(--sand); }
+
+    .nav-ctas { display: flex; align-items: center; gap: 10px; }
+
+    /* ── Buttons ── */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+      padding: 11px 24px;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      border: none;
+      transition: all .2s ease;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .btn-ink {
+      background: var(--ink); color: var(--white);
+    }
+    .btn-ink:hover { background: var(--ink-mid); transform: translateY(-1px); box-shadow: var(--shadow-md); }
+    .btn-clay {
+      background: var(--clay); color: var(--white);
+    }
+    .btn-clay:hover { background: var(--clay-lt); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(200,96,58,.35); }
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid var(--sand-dk);
+      color: var(--ink);
+    }
+    .btn-outline:hover { border-color: var(--ink); background: var(--sand); }
+    .btn-ghost {
+      background: var(--sand);
+      color: var(--ink);
+      border: none;
+    }
+    .btn-ghost:hover { background: var(--sand-md); }
+    .btn-white {
+      background: var(--white); color: var(--ink);
+    }
+    .btn-white:hover { background: var(--sand); }
+    .btn-sm { padding: 8px 16px; font-size: 0.82rem; }
+    .btn-lg { padding: 15px 32px; font-size: 1rem; }
+    .btn-xl { padding: 18px 40px; font-size: 1.05rem; border-radius: var(--radius); }
+    .btn:disabled { opacity: .5; cursor: not-allowed; pointer-events: none; }
+
+    /* ═══════════════════════════════════════════════════════════
+       HERO SECTION
+    ═══════════════════════════════════════════════════════════ */
+    .hero {
+      padding-top: var(--nav-h);
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 0;
+      overflow: hidden;
+    }
+
+    .hero-left {
+      padding: 80px 60px 80px 80px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--clay-pale);
+      color: var(--clay);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-bottom: 28px;
+      width: fit-content;
+      animation: fadeUp .6s ease both;
+    }
+
+    .hero-h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 4.5vw, 4rem);
+      font-weight: 900;
+      color: var(--ink);
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      margin-bottom: 20px;
+      animation: fadeUp .7s .1s ease both;
+    }
+    .hero-h1 em {
+      font-style: italic;
+      color: var(--clay);
+    }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      color: var(--ink-lt);
+      line-height: 1.7;
+      max-width: 440px;
+      margin-bottom: 40px;
+      animation: fadeUp .7s .2s ease both;
+    }
+
+    /* Search bar */
+    .hero-search {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 8px 8px 8px 20px;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+      animation: fadeUp .7s .3s ease both;
+      border: 1.5px solid var(--sand-md);
+    }
+
+    .search-divider { width: 1px; height: 28px; background: var(--sand-md); flex-shrink: 0; }
+
+    .search-field {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+    .search-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--ink-lt);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+    .search-field input, .search-field select {
+      border: none; outline: none;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--ink);
+      background: transparent;
+      width: 100%;
+    }
+    .search-field select { cursor: pointer; }
+
+    .hero-search-btn {
+      background: var(--clay);
+      color: var(--white);
+      border: none;
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      display: grid; place-items: center;
+      font-size: 1.2rem;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: all .2s;
+    }
+    .hero-search-btn:hover { background: var(--clay-lt); transform: scale(1.05); }
+
+    .hero-pills {
+      display: flex; gap: 8px; flex-wrap: wrap;
+      animation: fadeUp .7s .4s ease both;
+    }
+    .hero-pill {
+      background: var(--sand);
+      border: 1px solid var(--sand-md);
+      color: var(--ink-lt);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all .2s;
+    }
+    .hero-pill:hover { background: var(--clay-pale); border-color: var(--clay); color: var(--clay); }
+
+    /* Hero right — photo mosaic */
+    .hero-right {
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-mosaic {
+      position: absolute; inset: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr;
+      gap: 6px;
+      padding: 6px;
+      animation: fadeIn .8s .2s ease both;
+    }
+
+    .mosaic-cell {
+      border-radius: var(--radius);
+      overflow: hidden;
+      position: relative;
+    }
+    .mosaic-cell:nth-child(1) { grid-row: 1 / 3; }
+    .mosaic-cell:nth-child(4) { grid-row: 2 / 4; }
+
+    /* Beautiful gradient placeholders for property images */
+    .mosaic-cell:nth-child(1) { background: linear-gradient(135deg, #d4956a 0%, #c8603a 40%, #8b3a20 100%); }
+    .mosaic-cell:nth-child(2) { background: linear-gradient(135deg, #5b8fa8 0%, #2d6e8e 100%); }
+    .mosaic-cell:nth-child(3) { background: linear-gradient(135deg, #6b9e6b 0%, #3d7a3d 100%); }
+    .mosaic-cell:nth-child(4) { background: linear-gradient(135deg, #8b7355 0%, #5a4a32 100%); }
+    .mosaic-cell:nth-child(5) { background: linear-gradient(135deg, #c8a96a 0%, #a07840 100%); }
+
+    .mosaic-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(26,26,46,.4) 0%, transparent 60%);
+    }
+
+    .mosaic-badge {
+      position: absolute; bottom: 14px; left: 14px;
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(8px);
+      padding: 6px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+    .mosaic-price { color: var(--clay); }
+
+    /* Property & trades icons in mosaic */
+    .mosaic-icon {
+      position: absolute;
+      top: 50%; left: 50%; transform: translate(-50%,-50%);
+      font-size: 3.5rem;
+      opacity: .25;
+    }
+
+    /* Trust strip */
+    .hero-trust {
+      display: flex; gap: 28px; flex-wrap: wrap;
+      margin-top: 32px;
+      animation: fadeUp .7s .5s ease both;
+    }
+    .trust-item {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 0.85rem;
+      color: var(--ink-lt);
+    }
+    .trust-icon { font-size: 1.1rem; }
+
+    /* ═══════════════════════════════════════════════════════════
+       CATEGORY TABS (Rentals vs Trades)
+    ═══════════════════════════════════════════════════════════ */
+    .category-section {
+      padding: 80px 80px 60px;
+      background: var(--white);
+    }
+
+    .section-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: var(--clay);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      font-weight: 800;
+      color: var(--ink);
+      letter-spacing: -0.03em;
+      margin-bottom: 8px;
+    }
+    .section-sub {
+      font-size: 1rem;
+      color: var(--ink-lt);
+      margin-bottom: 36px;
+      max-width: 520px;
+    }
+
+    .mode-tabs {
+      display: flex;
+      gap: 6px;
+      background: var(--sand);
+      border-radius: var(--radius);
+      padding: 6px;
+      width: fit-content;
+      margin-bottom: 40px;
+    }
+    .mode-tab {
+      display: flex; align-items: center; gap: 8px;
+      padding: 10px 24px;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      color: var(--ink-lt);
+      transition: all .25s;
+      font-family: var(--font-body);
+    }
+    .mode-tab.active {
+      background: var(--white);
+      color: var(--ink);
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       PROPERTY CARDS
+    ═══════════════════════════════════════════════════════════ */
+    .listings-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    .property-card {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: var(--white);
+      border: 1px solid var(--sand-md);
+      transition: all .25s ease;
+      cursor: pointer;
+    }
+    .property-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-4px);
+      border-color: transparent;
+    }
+
+    .prop-img {
+      height: 200px;
+      position: relative;
+      overflow: hidden;
+    }
+    .prop-img-bg {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 4rem;
+      transition: transform .4s ease;
+    }
+    .property-card:hover .prop-img-bg { transform: scale(1.06); }
+
+    .prop-img-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(26,26,46,.3) 0%, transparent 50%);
+    }
+
+    .prop-fav {
+      position: absolute; top: 14px; right: 14px;
+      width: 34px; height: 34px;
+      background: rgba(255,255,255,.88);
+      backdrop-filter: blur(6px);
+      border-radius: 50%;
+      display: grid; place-items: center;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all .2s;
+      border: none;
+    }
+    .prop-fav:hover { background: white; transform: scale(1.1); }
+    .prop-fav.active { color: #e53e3e; }
+
+    .prop-tag {
+      position: absolute; top: 14px; left: 14px;
+    }
+    .tag {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      background: var(--white);
+      color: var(--ink);
+    }
+    .tag-clay { background: var(--clay); color: white; }
+    .tag-ink { background: var(--ink); color: white; }
+    .tag-success { background: var(--success); color: white; }
+
+    .prop-body { padding: 16px 18px 18px; }
+
+    .prop-location {
+      font-size: 0.78rem;
+      color: var(--ink-lt);
+      margin-bottom: 4px;
+      display: flex; align-items: center; gap: 4px;
+    }
+
+    .prop-title {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+
+    .prop-features {
+      display: flex; gap: 12px;
+      font-size: 0.82rem;
+      color: var(--ink-lt);
+      margin-bottom: 14px;
+    }
+    .prop-feat { display: flex; align-items: center; gap: 4px; }
+
+    .prop-footer {
+      display: flex; justify-content: space-between; align-items: center;
+      padding-top: 14px;
+      border-top: 1px solid var(--sand);
+    }
+    .prop-price {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .prop-price span {
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      font-weight: 400;
+      color: var(--ink-lt);
+    }
+
+    .prop-host {
+      display: flex; align-items: center; gap: 7px;
+      font-size: 0.8rem;
+      color: var(--ink-lt);
+    }
+    .host-avatar {
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      display: grid; place-items: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: white;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       TRADES CARDS
+    ═══════════════════════════════════════════════════════════ */
+    .trades-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .trade-card {
+      background: var(--white);
+      border: 1px solid var(--sand-md);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      transition: all .25s;
+      cursor: pointer;
+    }
+    .trade-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-4px);
+      border-color: transparent;
+    }
+
+    .trade-header {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      margin-bottom: 14px;
+    }
+    .trade-avatar {
+      width: 52px; height: 52px;
+      border-radius: 14px;
+      display: grid; place-items: center;
+      font-size: 1.6rem;
+    }
+    .trade-rating {
+      display: flex; flex-direction: column; align-items: flex-end; gap: 3px;
+    }
+    .stars { font-size: 0.8rem; color: #f5a623; letter-spacing: 1px; }
+    .rating-count { font-size: 0.75rem; color: var(--ink-lt); }
+
+    .trade-name {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 2px;
+    }
+    .trade-specialty {
+      font-size: 0.82rem;
+      color: var(--ink-lt);
+      margin-bottom: 10px;
+    }
+
+    .trade-tags {
+      display: flex; flex-wrap: wrap; gap: 6px;
+      margin-bottom: 14px;
+    }
+    .skill-tag {
+      background: var(--sand);
+      color: var(--ink-lt);
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+
+    .trade-meta {
+      display: flex; justify-content: space-between; align-items: center;
+      padding-top: 14px;
+      border-top: 1px solid var(--sand);
+      font-size: 0.82rem;
+    }
+    .trade-location { color: var(--ink-lt); display: flex; align-items: center; gap: 4px; }
+    .trade-rate { font-weight: 700; color: var(--ink); }
+
+    .verified-badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      background: var(--success-lt);
+      color: var(--success);
+      padding: 3px 8px;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       HOW IT WORKS
+    ═══════════════════════════════════════════════════════════ */
+    .how-section {
+      background: var(--ink);
+      padding: 80px;
+      color: var(--white);
+    }
+    .how-section .section-label { color: var(--clay-lt); }
+    .how-section .section-title { color: var(--white); }
+    .how-section .section-sub { color: rgba(255,255,255,.6); }
+
+    .how-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 32px;
+      margin-top: 40px;
+    }
+    .how-step {
+      display: flex; flex-direction: column; gap: 14px;
+    }
+    .step-num {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      background: rgba(200,96,58,.2);
+      border: 1px solid rgba(200,96,58,.3);
+      display: grid; place-items: center;
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--clay-lt);
+    }
+    .step-title {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+    .step-desc { font-size: 0.9rem; color: rgba(255,255,255,.55); line-height: 1.6; }
+
+    /* ═══════════════════════════════════════════════════════════
+       STATS STRIP
+    ═══════════════════════════════════════════════════════════ */
+    .stats-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      background: var(--clay-pale);
+      border-top: 1px solid rgba(200,96,58,.15);
+      border-bottom: 1px solid rgba(200,96,58,.15);
+    }
+    .stat-item {
+      padding: 36px 28px;
+      text-align: center;
+      border-right: 1px solid rgba(200,96,58,.15);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-num {
+      font-family: var(--font-display);
+      font-size: 2.4rem;
+      font-weight: 900;
+      color: var(--ink);
+      letter-spacing: -0.04em;
+    }
+    .stat-desc { font-size: 0.85rem; color: var(--ink-lt); margin-top: 4px; }
+
+    /* ═══════════════════════════════════════════════════════════
+       CTA SECTION
+    ═══════════════════════════════════════════════════════════ */
+    .cta-section {
+      padding: 100px 80px;
+      text-align: center;
+      background: var(--sand);
+    }
+    .cta-section .section-title { margin-bottom: 16px; }
+    .cta-section .section-sub { margin: 0 auto 40px; }
+    .cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+    /* ═══════════════════════════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════════════════════════ */
+    .footer {
+      background: var(--ink);
+      color: rgba(255,255,255,.5);
+      padding: 48px 80px 32px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+    .footer-brand .nav-logo-name { color: white; font-size: 1.1rem; }
+    .footer-brand p {
+      font-size: 0.85rem; line-height: 1.7; margin-top: 12px; margin-bottom: 16px;
+    }
+    .footer-col h4 {
+      font-size: 0.82rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .1em; color: rgba(255,255,255,.7); margin-bottom: 14px;
+    }
+    .footer-col a {
+      display: block; font-size: 0.88rem; color: rgba(255,255,255,.45);
+      text-decoration: none; margin-bottom: 8px; cursor: pointer; transition: color .2s;
+    }
+    .footer-col a:hover { color: rgba(255,255,255,.8); }
+    .footer-bottom {
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,.08);
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.82rem; flex-wrap: wrap; gap: 12px;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       AUTH MODAL
+    ═══════════════════════════════════════════════════════════ */
+    .modal-backdrop {
+      position: fixed; inset: 0; z-index: 1000;
+      background: rgba(26,26,46,.55);
+      backdrop-filter: blur(6px);
+      display: flex; align-items: center; justify-content: center;
+      padding: 20px;
+    }
+    .modal {
+      background: var(--white);
+      border-radius: var(--radius-xl);
+      width: 100%; max-width: 460px;
+      padding: 40px;
+      box-shadow: var(--shadow-xl);
+      animation: scaleIn .22s ease;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    .modal-close {
+      float: right; background: var(--sand); border: none;
+      width: 32px; height: 32px; border-radius: 8px;
+      cursor: pointer; font-size: 1rem; display: grid; place-items: center;
+      margin-top: -4px;
+      transition: background .2s;
+    }
+    .modal-close:hover { background: var(--sand-md); }
+
+    .modal-title {
+      font-family: var(--font-display);
+      font-size: 1.6rem; font-weight: 800;
+      color: var(--ink); margin-bottom: 6px;
+      letter-spacing: -0.02em;
+      clear: both;
+    }
+    .modal-sub { font-size: 0.9rem; color: var(--ink-lt); margin-bottom: 28px; }
+
+    .role-picker {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px; margin-bottom: 24px;
+    }
+    .role-option {
+      border: 2px solid var(--sand-md);
+      border-radius: var(--radius);
+      padding: 14px 10px;
+      text-align: center;
+      cursor: pointer;
+      transition: all .2s;
+    }
+    .role-option:hover { border-color: var(--clay); }
+    .role-option.selected { border-color: var(--clay); background: var(--clay-pale); }
+    .role-option .role-icon { font-size: 1.6rem; margin-bottom: 6px; }
+    .role-option .role-label { font-size: 0.8rem; font-weight: 600; color: var(--ink); }
+
+    .auth-tabs {
+      display: flex; background: var(--sand);
+      border-radius: var(--radius-sm); padding: 4px; margin-bottom: 24px;
+    }
+    .auth-tab {
+      flex: 1; padding: 9px; text-align: center;
+      border-radius: 6px; cursor: pointer;
+      font-weight: 600; font-size: 0.88rem;
+      transition: all .2s; color: var(--ink-lt);
+      background: transparent; border: none;
+      font-family: var(--font-body);
+    }
+    .auth-tab.active {
+      background: var(--white); color: var(--ink);
+      box-shadow: var(--shadow-xs);
+    }
+
+    .form-group { margin-bottom: 16px; }
+    .form-label {
+      display: block; font-size: 0.83rem; font-weight: 600;
+      color: var(--ink); margin-bottom: 7px;
+    }
+    .form-input {
+      width: 100%; padding: 12px 15px;
+      border: 1.5px solid var(--sand-md);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-body); font-size: 0.93rem;
+      color: var(--ink); background: var(--white);
+      transition: border-color .2s; outline: none;
+    }
+    .form-input:focus { border-color: var(--clay); box-shadow: 0 0 0 3px rgba(200,96,58,.1); }
+    .form-input::placeholder { color: var(--sand-dk); }
+    select.form-input { cursor: pointer; }
+    .form-error {
+      background: var(--danger-lt); color: var(--danger);
+      padding: 10px 14px; border-radius: var(--radius-sm);
+      font-size: 0.85rem; margin-bottom: 16px;
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+    /* ═══════════════════════════════════════════════════════════
+       APP SHELL (post-login)
+    ═══════════════════════════════════════════════════════════ */
+    #app { min-height: 100vh; }
+
+    .app-topbar {
+      position: sticky; top: 0; z-index: 200;
+      height: var(--nav-h);
+      background: rgba(255,255,255,.94);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--sand-md);
+      display: flex; align-items: center;
+      padding: 0 32px;
+      gap: 16px;
+    }
+    .app-topbar-logo { flex: 0 0 auto; }
+
+    .app-nav-tabs {
+      display: flex; gap: 4px; flex: 1;
+      overflow-x: auto; -ms-overflow-style: none; scrollbar-width: none;
+    }
+    .app-nav-tabs::-webkit-scrollbar { display: none; }
+
+    .app-tab {
+      display: flex; align-items: center; gap: 7px;
+      padding: 9px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 0.875rem; font-weight: 500;
+      color: var(--ink-lt);
+      cursor: pointer; border: none; background: transparent;
+      transition: all .2s; white-space: nowrap;
+      font-family: var(--font-body);
+    }
+    .app-tab:hover { background: var(--sand); color: var(--ink); }
+    .app-tab.active { background: var(--ink); color: var(--white); }
+
+    .app-user-area { display: flex; align-items: center; gap: 10px; flex: 0 0 auto; }
+    .user-pill {
+      display: flex; align-items: center; gap: 8px;
+      padding: 6px 14px 6px 8px;
+      background: var(--sand);
+      border-radius: 999px;
+      font-size: 0.85rem; font-weight: 500;
+    }
+    .user-ava {
+      width: 28px; height: 28px; border-radius: 50%;
+      display: grid; place-items: center;
+      font-size: 0.78rem; font-weight: 700; color: white;
+    }
+
+    /* App body */
+    .app-body {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 32px 32px;
+    }
+
+    /* Page header */
+    .page-hd {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      margin-bottom: 28px; flex-wrap: wrap; gap: 16px;
+    }
+    .page-hd h1 {
+      font-family: var(--font-display);
+      font-size: 1.9rem; font-weight: 800;
+      color: var(--ink); letter-spacing: -0.025em;
+    }
+    .page-hd p { font-size: 0.92rem; color: var(--ink-lt); margin-top: 4px; }
+
+    /* ── Stat cards ── */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 16px; margin-bottom: 28px;
+    }
+    .stat-card {
+      background: var(--white);
+      border: 1px solid var(--sand-md);
+      border-radius: var(--radius);
+      padding: 20px 22px;
+      position: relative; overflow: hidden;
+      transition: box-shadow .2s, transform .2s;
+    }
+    .stat-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+    .stat-card::before {
+      content: ''; position: absolute;
+      top: 0; left: 0; right: 0; height: 3px;
+    }
+    .sc-clay::before { background: var(--clay); }
+    .sc-ink::before  { background: var(--ink); }
+    .sc-green::before { background: var(--success); }
+    .sc-gold::before { background: #c27c0e; }
+    .sc-label { font-size: 0.75rem; font-weight: 700; color: var(--ink-lt); text-transform: uppercase; letter-spacing: .07em; margin-bottom: 8px; }
+    .sc-value { font-family: var(--font-display); font-size: 1.9rem; font-weight: 800; color: var(--ink); line-height: 1; margin-bottom: 6px; }
+    .sc-change { font-size: 0.8rem; font-weight: 500; }
+    .sc-change.up { color: var(--success); }
+    .sc-change.neutral { color: var(--ink-lt); }
+    .sc-icon { position: absolute; top: 18px; right: 18px; font-size: 2rem; opacity: .1; }
+
+    /* ── Content card ── */
+    .content-card {
+      background: var(--white);
+      border: 1px solid var(--sand-md);
+      border-radius: var(--radius-lg);
+      padding: 22px 24px;
+    }
+    .cc-title {
+      font-family: var(--font-display);
+      font-size: 1rem; font-weight: 700;
+      color: var(--ink); margin-bottom: 16px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .cc-title .cc-action {
+      font-size: 0.8rem; font-weight: 500; color: var(--clay);
+      cursor: pointer; font-family: var(--font-body);
+    }
+
+    /* ── Data table ── */
+    .data-table { width: 100%; border-collapse: collapse; }
+    .data-table th {
+      text-align: left; font-size: 0.73rem; font-weight: 700;
+      color: var(--ink-lt); text-transform: uppercase; letter-spacing: .07em;
+      padding: 0 12px 10px; border-bottom: 1px solid var(--sand-md);
+    }
+    .data-table td {
+      padding: 12px 12px; font-size: 0.875rem;
+      border-bottom: 1px solid var(--sand);
+      vertical-align: middle;
+    }
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table tr:hover td { background: var(--sand); }
+    .data-table tr { cursor: pointer; transition: background .15s; }
+
+    /* ── Badges ── */
+    .badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 3px 10px; border-radius: 999px;
+      font-size: 0.73rem; font-weight: 700;
+    }
+    .badge-green  { background: var(--success-lt); color: var(--success); }
+    .badge-clay   { background: var(--clay-pale); color: var(--clay); }
+    .badge-ink    { background: var(--sand-md); color: var(--ink); }
+    .badge-warning { background: var(--warning-lt); color: var(--warning); }
+    .badge-danger  { background: var(--danger-lt); color: var(--danger); }
+
+    /* ── Two col grid ── */
+    .two-col { display: grid; grid-template-columns: 3fr 2fr; gap: 20px; }
+    @media (max-width: 900px) { .two-col { grid-template-columns: 1fr; } }
+
+    /* ── Manage listings view ── */
+    .listing-manage-card {
+      background: var(--white);
+      border: 1px solid var(--sand-md);
+      border-radius: var(--radius);
+      display: flex; align-items: center; gap: 14px;
+      padding: 14px 18px;
+      transition: all .2s;
+    }
+    .listing-manage-card:hover { box-shadow: var(--shadow-sm); }
+    .lm-thumb {
+      width: 64px; height: 64px;
+      border-radius: var(--radius-sm);
+      display: grid; place-items: center;
+      font-size: 1.8rem; flex-shrink: 0;
+    }
+    .lm-info { flex: 1 }
+    .lm-title { font-weight: 600; font-size: 0.92rem; margin-bottom: 3px; }
+    .lm-meta { font-size: 0.8rem; color: var(--ink-lt); }
+
+    /* ── Bar chart ── */
+    .bar-chart {
+      display: flex; align-items: flex-end; gap: 8px;
+      height: 100px; padding: 8px 0;
+    }
+    .bc-col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; height: 100%; justify-content: flex-end; }
+    .bc-bar { width: 100%; border-radius: 4px 4px 0 0; min-height: 4px; transition: height .5s ease; }
+    .bc-bar.clay { background: var(--clay); }
+    .bc-bar.ink  { background: var(--ink); }
+    .bc-label { font-size: 0.68rem; color: var(--ink-lt); }
+
+    /* ── AI Chat ── */
+    .chat-wrap {
+      display: flex; flex-direction: column;
+      background: var(--white);
+      border: 1px solid var(--sand-md);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      min-height: 480px;
+    }
+    .chat-header {
+      background: var(--ink);
+      padding: 18px 22px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .ai-dot {
+      width: 38px; height: 38px;
+      background: var(--clay);
+      border-radius: 10px;
+      display: grid; place-items: center;
+      font-size: 1.1rem;
+    }
+    .chat-header-text h3 { font-family: var(--font-display); font-weight: 700; color: white; font-size: 1rem; }
+    .chat-header-text p { font-size: 0.78rem; color: rgba(255,255,255,.55); }
+
+    .chat-body {
+      flex: 1; overflow-y: auto;
+      padding: 20px; display: flex; flex-direction: column; gap: 14px;
+      max-height: 400px;
+    }
+    .chat-msg { display: flex; gap: 10px; animation: fadeUp .3s ease; }
+    .chat-msg.user { flex-direction: row-reverse; }
+    .chat-ava {
+      width: 32px; height: 32px; border-radius: 9px;
+      display: grid; place-items: center; font-size: 0.9rem; flex-shrink: 0;
+    }
+    .chat-msg.ai .chat-ava { background: var(--clay-pale); }
+    .chat-msg.user .chat-ava { background: var(--ink); color: white; font-size: 0.75rem; font-weight: 700; }
+    .chat-bubble {
+      padding: 11px 15px; border-radius: 12px; max-width: 78%;
+      font-size: 0.88rem; line-height: 1.6;
+    }
+    .chat-msg.ai .chat-bubble { background: var(--sand); color: var(--ink); border-bottom-left-radius: 4px; }
+    .chat-msg.user .chat-bubble { background: var(--ink); color: white; border-bottom-right-radius: 4px; }
+
+    .chat-input-row {
+      display: flex; gap: 10px; padding: 14px 16px;
+      border-top: 1px solid var(--sand-md);
+      background: var(--sand);
+    }
+    .chat-txt {
+      flex: 1; padding: 11px 16px;
+      border: 1.5px solid var(--sand-md);
+      border-radius: 999px;
+      font-family: var(--font-body); font-size: 0.9rem;
+      background: var(--white); outline: none;
+      transition: border-color .2s;
+    }
+    .chat-txt:focus { border-color: var(--clay); }
+    .chat-send-btn {
+      width: 42px; height: 42px; border-radius: 50%;
+      background: var(--clay); color: white; border: none;
+      display: grid; place-items: center; font-size: 1.1rem;
+      cursor: pointer; transition: all .2s; flex-shrink: 0;
+    }
+    .chat-send-btn:hover { background: var(--clay-lt); transform: scale(1.05); }
+
+    .quick-prompts {
+      display: flex; gap: 7px; flex-wrap: wrap; padding: 0 16px 14px;
+    }
+    .qp-btn {
+      background: var(--sand); border: 1px solid var(--sand-md);
+      color: var(--ink-lt); padding: 5px 12px;
+      border-radius: 999px; font-size: 0.78rem;
+      cursor: pointer; transition: all .2s;
+      font-family: var(--font-body);
+    }
+    .qp-btn:hover { border-color: var(--clay); color: var(--clay); background: var(--clay-pale); }
+
+    /* ── Add listing modal ── */
+    .modal-lg { max-width: 620px; }
+    .add-listing-tabs {
+      display: flex; gap: 6px;
+      background: var(--sand); border-radius: var(--radius-sm);
+      padding: 4px; margin-bottom: 24px;
+    }
+    .al-tab {
+      flex: 1; padding: 9px; text-align: center;
+      border-radius: 6px; cursor: pointer;
+      font-weight: 600; font-size: 0.88rem;
+      transition: all .2s; color: var(--ink-lt);
+      background: transparent; border: none;
+      font-family: var(--font-body);
+    }
+    .al-tab.active { background: var(--white); color: var(--ink); box-shadow: var(--shadow-xs); }
+
+    /* ── Filters bar ── */
+    .filters-bar {
+      display: flex; gap: 10px; align-items: center;
+      margin-bottom: 24px; flex-wrap: wrap;
+    }
+    .filter-chip {
+      display: flex; align-items: center; gap: 6px;
+      padding: 8px 16px;
+      border: 1.5px solid var(--sand-md);
+      border-radius: 999px;
+      font-size: 0.85rem; font-weight: 500;
+      cursor: pointer; background: var(--white);
+      transition: all .2s; color: var(--ink);
+      font-family: var(--font-body);
+    }
+    .filter-chip:hover, .filter-chip.active {
+      border-color: var(--ink); background: var(--ink); color: white;
+    }
+    .filter-chip select {
+      border: none; outline: none; background: transparent;
+      font-family: var(--font-body); font-size: 0.85rem;
+      cursor: pointer; color: inherit;
+    }
+
+    /* ── Toast ── */
+    #toasts {
+      position: fixed; bottom: 24px; right: 24px;
+      display: flex; flex-direction: column; gap: 10px; z-index: 9999;
+    }
+    .toast {
+      background: var(--ink); color: white;
+      padding: 13px 20px; border-radius: var(--radius);
+      font-size: 0.88rem; box-shadow: var(--shadow-lg);
+      animation: fadeUp .3s ease; max-width: 320px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .toast.error { background: var(--danger); }
+    .toast.success { background: var(--success); }
+
+    /* ── Mobile nav ── */
+    .mobile-bottom-nav {
+      display: none;
+      position: fixed; bottom: 0; left: 0; right: 0;
+      background: rgba(255,255,255,.96);
+      backdrop-filter: blur(16px);
+      border-top: 1px solid var(--sand-md);
+      z-index: 300; padding: 8px 0 4px;
+    }
+    .mob-tabs { display: flex; justify-content: space-around; }
+    .mob-tab {
+      display: flex; flex-direction: column; align-items: center; gap: 3px;
+      padding: 6px 14px; font-size: 0.68rem; font-weight: 600;
+      color: var(--ink-lt); cursor: pointer; border: none; background: transparent;
+      border-radius: var(--radius-sm); font-family: var(--font-body);
+    }
+    .mob-tab .mt-icon { font-size: 1.3rem; }
+    .mob-tab.active { color: var(--clay); }
+
+    /* ── Typing dots ── */
+    .typing { display: flex; gap: 4px; padding: 4px 0; }
+    .typing span {
+      width: 7px; height: 7px; background: var(--clay);
+      border-radius: 50%; animation: bounce .8s infinite;
+    }
+    .typing span:nth-child(2) { animation-delay: .15s; }
+    .typing span:nth-child(3) { animation-delay: .3s; }
+
+    /* ── Animations ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; } to { opacity: 1; }
+    }
+    @keyframes scaleIn {
+      from { opacity: 0; transform: scale(.95); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .spinner {
+      width: 18px; height: 18px;
+      border: 2.5px solid rgba(255,255,255,.4);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin .7s linear infinite;
+      display: inline-block;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 1024px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { display: none; }
+      .hero-left { padding: 80px 40px; }
+      .category-section, .how-section, .cta-section, .footer { padding-left: 40px; padding-right: 40px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .stats-strip { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .site-nav .nav-links, .site-nav .nav-ctas { display: none; }
+      .site-nav .mobile-auth-btn { display: flex !important; }
+      .hero-left { padding: 60px 20px; }
+      .hero-h1 { font-size: 2.3rem; }
+      .category-section, .how-section, .cta-section { padding: 48px 20px; }
+      .footer { padding: 40px 20px 24px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+      .stats-strip { grid-template-columns: 1fr 1fr; }
+      .mobile-bottom-nav { display: block; }
+      .app-body { padding-bottom: 80px; }
+      .app-nav-tabs { display: none; }
+    }
+    @media (max-width: 480px) {
+      .hero-search { flex-direction: column; padding: 14px; gap: 8px; }
+      .search-divider { display: none; }
+      .hero-search-btn { width: 100%; height: 44px; border-radius: var(--radius-sm); }
+      .stats-strip { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════
+     LANDING PAGE
+═══════════════════════════════════════════════════════════ -->
+<div id="landing">
+
+  <!-- Fixed nav -->
+  <nav class="site-nav" id="site-nav">
+    <a class="nav-logo" onclick="scrollTo(0,0)">
+      <div class="nav-logo-mark">🏠</div>
+      <div class="nav-logo-name">Home<span>Base</span></div>
+    </a>
+
+    <div class="nav-links">
+      <a class="nav-link" onclick="scrollToSection('listings-section')">Rentals</a>
+      <a class="nav-link" onclick="scrollToSection('trades-section')">Trades</a>
+      <a class="nav-link" onclick="scrollToSection('how-section')">How it works</a>
+      <a class="nav-link" onclick="scrollToSection('cities-section')">Cities</a>
+    </div>
+
+    <div class="nav-ctas">
+      <button class="btn btn-outline btn-sm" onclick="openAuth('login')">Log in</button>
+      <button class="btn btn-ink btn-sm" onclick="openAuth('signup')">Get started</button>
+      <button class="btn btn-clay btn-sm" onclick="openAuth('list')">List your space</button>
+    </div>
+
+    <!-- Mobile: show just one CTA -->
+    <button class="btn btn-ink btn-sm mobile-auth-btn" style="display:none;" onclick="openAuth('signup')">Get started</button>
+  </nav>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-left">
+      <div class="hero-eyebrow">🇬🇭 Ghana's home & trades platform</div>
+
+      <h1 class="hero-h1">
+        Find your home.<br/>
+        <em>Fix your home.</em><br/>
+        All in one place.
+      </h1>
+
+      <p class="hero-sub">
+        Browse verified rentals in Accra & Kumasi. Book trusted tradespeople — plumbers, electricians, painters & more. No middlemen. No scams. Just HomeBase.
+      </p>
+
+      <!-- Smart search bar -->
+      <div class="hero-search">
+        <div class="search-field">
+          <div class="search-label">I'm looking for</div>
+          <select id="hs-type">
+            <option value="rental">A rental property</option>
+            <option value="trade">A tradesperson</option>
+          </select>
+        </div>
+        <div class="search-divider"></div>
+        <div class="search-field">
+          <div class="search-label">City</div>
+          <select id="hs-city">
+            <option>Accra</option>
+            <option>Kumasi</option>
+          </select>
+        </div>
+        <div class="search-divider"></div>
+        <div class="search-field">
+          <div class="search-label">Area / Type</div>
+          <input type="text" id="hs-query" placeholder="e.g. East Legon, 2-bed..." />
+        </div>
+        <button class="hero-search-btn" onclick="doHeroSearch()">🔍</button>
+      </div>
+
+      <div class="hero-pills">
+        <div class="hero-pill" onclick="quickSearch('2-bedroom Accra')">2-bed in Accra</div>
+        <div class="hero-pill" onclick="quickSearch('East Legon apartment')">East Legon</div>
+        <div class="hero-pill" onclick="quickSearch('Kumasi house')">Kumasi house</div>
+        <div class="hero-pill" onclick="quickSearchTrade('plumber')">Find plumber</div>
+        <div class="hero-pill" onclick="quickSearchTrade('electrician')">Electrician</div>
+      </div>
+
+      <div class="hero-trust">
+        <div class="trust-item"><span class="trust-icon">✅</span> Verified landlords</div>
+        <div class="trust-item"><span class="trust-icon">⭐</span> Rated tradespeople</div>
+        <div class="trust-item"><span class="trust-icon">🔒</span> Safe MoMo payments</div>
+        <div class="trust-item"><span class="trust-icon">💬</span> WhatsApp contact</div>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="hero-mosaic">
+        <div class="mosaic-cell">
+          <div class="mosaic-icon">🏘️</div>
+          <div class="mosaic-overlay"></div>
+          <div class="mosaic-badge">East Legon · <span class="mosaic-price">GH₵ 3,500/mo</span></div>
+        </div>
+        <div class="mosaic-cell">
+          <div class="mosaic-icon">🔧</div>
+          <div class="mosaic-overlay"></div>
+          <div class="mosaic-badge"><span class="verified-badge">✓ Verified</span></div>
+        </div>
+        <div class="mosaic-cell">
+          <div class="mosaic-icon">🏠</div>
+          <div class="mosaic-overlay"></div>
+          <div class="mosaic-badge">Kumasi · Studio</div>
+        </div>
+        <div class="mosaic-cell">
+          <div class="mosaic-icon">⚡</div>
+          <div class="mosaic-overlay"></div>
+          <div class="mosaic-badge">Electrician · ⭐ 4.9</div>
+        </div>
+        <div class="mosaic-cell">
+          <div class="mosaic-icon">🛋️</div>
+          <div class="mosaic-overlay"></div>
+          <div class="mosaic-badge">Furnished · Cantonments</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats-strip">
+    <div class="stat-item">
+      <div class="stat-num">1,200+</div>
+      <div class="stat-desc">Verified listings</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">340+</div>
+      <div class="stat-desc">Certified tradespeople</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">2</div>
+      <div class="stat-desc">Cities covered</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">4.8★</div>
+      <div class="stat-desc">Average rating</div>
+    </div>
+  </div>
+
+  <!-- Listings section -->
+  <div class="category-section" id="listings-section">
+    <div class="section-label">🏠 Rentals</div>
+    <div class="section-title">Find your next home</div>
+    <p class="section-sub">Browse verified apartments, houses, and rooms across Accra and Kumasi — with real photos and transparent pricing.</p>
+
+    <div class="mode-tabs">
+      <button class="mode-tab active" id="tab-rent" onclick="switchMode('rent')">🏠 For Rent</button>
+      <button class="mode-tab" id="tab-buy" onclick="switchMode('buy')">🏡 For Sale</button>
+      <button class="mode-tab" id="tab-short" onclick="switchMode('short')">📅 Short Stay</button>
+    </div>
+
+    <div class="filters-bar">
+      <div class="filter-chip active">All</div>
+      <div class="filter-chip">
+        <select onchange="filterProps(this.value)" style="min-width:80px;">
+          <option value="">City</option>
+          <option value="accra">Accra</option>
+          <option value="kumasi">Kumasi</option>
+        </select>
+      </div>
+      <div class="filter-chip">
+        <select onchange="filterProps(this.value)">
+          <option value="">Bedrooms</option>
+          <option>Studio</option><option>1 bed</option>
+          <option>2 bed</option><option>3 bed</option><option>4+ bed</option>
+        </select>
+      </div>
+      <div class="filter-chip">
+        <select onchange="filterProps(this.value)">
+          <option value="">Max price</option>
+          <option>Under GH₵ 1,000</option>
+          <option>Under GH₵ 2,500</option>
+          <option>Under GH₵ 5,000</option>
+          <option>Any price</option>
+        </select>
+      </div>
+      <div class="filter-chip">Furnished ✓</div>
+      <div class="filter-chip">With generator ✓</div>
+    </div>
+
+    <div class="listings-grid" id="prop-grid"></div>
+
+    <div style="text-align:center;margin-top:36px;">
+      <button class="btn btn-outline btn-lg" onclick="openAuth('signup')">View all listings →</button>
+    </div>
+  </div>
+
+  <!-- Trades section -->
+  <div class="category-section" style="background:var(--sand);" id="trades-section">
+    <div class="section-label">🔧 Trades</div>
+    <div class="section-title">Book a trusted professional</div>
+    <p class="section-sub">Every tradesperson on HomeBase is background-checked, rated by real customers, and many are TalentBridge certified.</p>
+
+    <div class="mode-tabs" style="background:var(--sand-md);">
+      <button class="mode-tab active" id="ttab-all" onclick="filterTrades('all')">All Trades</button>
+      <button class="mode-tab" id="ttab-plumbing" onclick="filterTrades('plumbing')">🚿 Plumbing</button>
+      <button class="mode-tab" id="ttab-electrical" onclick="filterTrades('electrical')">⚡ Electrical</button>
+      <button class="mode-tab" id="ttab-painting" onclick="filterTrades('painting')">🎨 Painting</button>
+      <button class="mode-tab" id="ttab-carpentry" onclick="filterTrades('carpentry')">🪚 Carpentry</button>
+    </div>
+
+    <div class="trades-grid" id="trades-grid"></div>
+
+    <div style="text-align:center;margin-top:36px;">
+      <button class="btn btn-ink btn-lg" onclick="openAuth('signup')">Find all tradespeople →</button>
+    </div>
+  </div>
+
+  <!-- How it works -->
+  <div class="how-section" id="how-section">
+    <div class="section-label">Simple process</div>
+    <div class="section-title" style="color:white;">How HomeBase works</div>
+    <p class="section-sub">Whether you're renting, selling, or booking a tradesperson — it's quick and safe.</p>
+
+    <div class="how-grid">
+      <div class="how-step">
+        <div class="step-num">01</div>
+        <div class="step-title">Create your free account</div>
+        <div class="step-desc">Sign up as a tenant, landlord, or tradesperson. Takes under 2 minutes with just your email.</div>
+      </div>
+      <div class="how-step">
+        <div class="step-num">02</div>
+        <div class="step-title">Browse & search</div>
+        <div class="step-desc">Filter by city, area, price, and type. Use our AI assistant to describe exactly what you need.</div>
+      </div>
+      <div class="how-step">
+        <div class="step-num">03</div>
+        <div class="step-title">Contact directly</div>
+        <div class="step-desc">Message the landlord or tradesperson directly via WhatsApp or our in-app chat. No estate agent needed.</div>
+      </div>
+      <div class="how-step">
+        <div class="step-num">04</div>
+        <div class="step-title">Pay safely via MoMo</div>
+        <div class="step-desc">Pay rent or book a trade job using MTN MoMo or Vodafone Cash. Funds held securely until confirmed.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section" id="cities-section">
+    <div class="section-label">Join today</div>
+    <div class="section-title">Ready to find your home?</div>
+    <p class="section-sub" style="max-width:480px;">Whether you're looking for a place to live or a trusted hand to fix it — HomeBase Ghana has you covered.</p>
+    <div class="cta-btns">
+      <button class="btn btn-ink btn-xl" onclick="openAuth('signup')">🏠 Find a home</button>
+      <button class="btn btn-clay btn-xl" onclick="openAuth('trade')">🔧 Find a tradesperson</button>
+      <button class="btn btn-outline btn-xl" onclick="openAuth('list')">📋 List your property</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo" style="margin-bottom:12px;">
+          <div class="nav-logo-mark" style="background:rgba(255,255,255,.1);">🏠</div>
+          <div class="nav-logo-name" style="color:white;">Home<span style="color:var(--clay);">Base</span></div>
+        </div>
+        <p>Ghana's trusted platform for rentals and home trades. Serving Accra and Kumasi — more cities coming soon.</p>
+        <div style="display:flex;gap:10px;margin-top:8px;">
+          <button class="btn btn-ghost btn-sm" style="background:rgba(255,255,255,.08);color:rgba(255,255,255,.6);">📘 Facebook</button>
+          <button class="btn btn-ghost btn-sm" style="background:rgba(255,255,255,.08);color:rgba(255,255,255,.6);">📸 Instagram</button>
+          <button class="btn btn-ghost btn-sm" style="background:rgba(255,255,255,.08);color:rgba(255,255,255,.6);">🐦 Twitter</button>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Rentals</h4>
+        <a>Browse in Accra</a>
+        <a>Browse in Kumasi</a>
+        <a>For sale</a>
+        <a>Short stays</a>
+        <a>List your property</a>
+      </div>
+      <div class="footer-col">
+        <h4>Trades</h4>
+        <a>Find plumbers</a>
+        <a>Find electricians</a>
+        <a>Painters & decorators</a>
+        <a>AC technicians</a>
+        <a>Join as a tradesperson</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a>About us</a>
+        <a>How it works</a>
+        <a>Safety & trust</a>
+        <a>TalentBridge partnership</a>
+        <a>Contact us</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 HomeBase Ghana. All rights reserved.</span>
+      <div style="display:flex;gap:20px;">
+        <a style="color:rgba(255,255,255,.4);text-decoration:none;font-size:.82rem;">Privacy Policy</a>
+        <a style="color:rgba(255,255,255,.4);text-decoration:none;font-size:.82rem;">Terms of Service</a>
+        <a style="color:rgba(255,255,255,.4);text-decoration:none;font-size:.82rem;">Cookie Policy</a>
+      </div>
+    </div>
+  </footer>
+
+</div><!-- /landing -->
+
+<!-- ═══════════════════════════════════════════════════════════
+     AUTH MODAL
+═══════════════════════════════════════════════════════════ -->
+<div id="auth-modal" class="modal-backdrop hidden">
+  <div class="modal">
+    <button class="modal-close" onclick="closeAuth()">✕</button>
+    <div class="modal-title" id="auth-title">Welcome to HomeBase</div>
+    <p class="modal-sub" id="auth-sub">Join Ghana's trusted home & trades platform</p>
+
+    <!-- Role picker (signup only) -->
+    <div id="role-picker" class="role-picker">
+      <div class="role-option selected" onclick="selectRole(this,'tenant')" data-role="tenant">
+        <div class="role-icon">🔍</div>
+        <div class="role-label">I'm renting</div>
+      </div>
+      <div class="role-option" onclick="selectRole(this,'landlord')" data-role="landlord">
+        <div class="role-icon">🏠</div>
+        <div class="role-label">I'm a landlord</div>
+      </div>
+      <div class="role-option" onclick="selectRole(this,'tradesperson')" data-role="tradesperson">
+        <div class="role-icon">🔧</div>
+        <div class="role-label">I'm a pro</div>
+      </div>
+    </div>
+
+    <div class="auth-tabs">
+      <button class="auth-tab active" id="atab-login" onclick="switchAuthTab('login')">Log In</button>
+      <button class="auth-tab" id="atab-signup" onclick="switchAuthTab('signup')">Sign Up</button>
+    </div>
+
+    <div id="auth-error" class="form-error hidden"></div>
+
+    <!-- Login -->
+    <div id="form-login">
+      <div class="form-group">
+        <label class="form-label">Email</label>
+        <input class="form-input" type="email" id="l-email" placeholder="your@email.com"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Password</label>
+        <input class="form-input" type="password" id="l-pass" placeholder="Your password"/>
+      </div>
+      <button class="btn btn-ink" style="width:100%;justify-content:center;margin-top:8px;" id="login-btn" onclick="doLogin()">
+        Log In
+      </button>
+      <p style="text-align:center;font-size:.82rem;color:var(--ink-lt);margin-top:12px;">
+        <a style="color:var(--clay);cursor:pointer;" onclick="switchAuthTab('signup')">Don't have an account? Sign up free</a>
+      </p>
+    </div>
+
+    <!-- Signup -->
+    <div id="form-signup" class="hidden">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">First name</label>
+          <input class="form-input" type="text" id="s-first" placeholder="Kofi"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Last name</label>
+          <input class="form-input" type="text" id="s-last" placeholder="Mensah"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Phone (for WhatsApp contact)</label>
+        <input class="form-input" type="tel" id="s-phone" placeholder="+233 XX XXX XXXX"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email</label>
+        <input class="form-input" type="email" id="s-email" placeholder="your@email.com"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Password</label>
+        <input class="form-input" type="password" id="s-pass" placeholder="At least 6 characters"/>
+      </div>
+      <button class="btn btn-clay" style="width:100%;justify-content:center;margin-top:8px;" id="signup-btn" onclick="doSignup()">
+        Create Account — It's Free
+      </button>
+      <p style="text-align:center;font-size:.78rem;color:var(--ink-lt);margin-top:10px;">
+        By signing up you agree to our Terms & Privacy Policy
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     MAIN APP (Post-login)
+═══════════════════════════════════════════════════════════ -->
+<div id="app" class="hidden">
+  <div class="app-topbar">
+    <div class="app-topbar-logo">
+      <a class="nav-logo" onclick="logoutToLanding()">
+        <div class="nav-logo-mark" style="width:34px;height:34px;font-size:1rem;border-radius:8px;">🏠</div>
+        <div class="nav-logo-name" style="font-size:1.1rem;">Home<span>Base</span></div>
+      </a>
+    </div>
+
+    <div class="app-nav-tabs">
+      <button class="app-tab active" onclick="gotoPage('home')" id="nav-home">🏠 Home</button>
+      <button class="app-tab" onclick="gotoPage('search')" id="nav-search">🔍 Search</button>
+      <button class="app-tab" onclick="gotoPage('ai')" id="nav-ai">🤖 AI Assistant</button>
+      <button class="app-tab" onclick="gotoPage('mylistings')" id="nav-mylistings">📋 My Listings</button>
+      <button class="app-tab" onclick="gotoPage('bookings')" id="nav-bookings">📅 Bookings</button>
+      <button class="app-tab" onclick="gotoPage('analytics')" id="nav-analytics">📊 Analytics</button>
+    </div>
+
+    <div class="app-user-area">
+      <div class="user-pill">
+        <div class="user-ava" id="user-ava" style="background:var(--clay);">K</div>
+        <span id="user-name-display">Kofi</span>
+      </div>
+      <button class="btn btn-ghost btn-sm" onclick="logoutToLanding()">Sign out</button>
+    </div>
+  </div>
+
+  <div class="app-body" id="app-body">
+
+    <!-- ── HOME / DASHBOARD ── -->
+    <div id="page-home">
+      <div class="page-hd">
+        <div>
+          <h1 id="dash-greeting">Good morning! 👋</h1>
+          <p>Here's what's happening on your HomeBase account</p>
+        </div>
+        <div style="display:flex;gap:10px;">
+          <button class="btn btn-outline btn-sm" onclick="openAddListing()">+ Add listing</button>
+          <button class="btn btn-clay btn-sm" onclick="gotoPage('search')">Browse properties</button>
+        </div>
+      </div>
+
+      <div class="stats-row">
+        <div class="stat-card sc-clay">
+          <div class="sc-label">Active Listings</div>
+          <div class="sc-value">3</div>
+          <div class="sc-change up">↑ 1 this month</div>
+          <div class="sc-icon">🏠</div>
+        </div>
+        <div class="stat-card sc-ink">
+          <div class="sc-label">Total Inquiries</div>
+          <div class="sc-value">24</div>
+          <div class="sc-change up">↑ 8 this week</div>
+          <div class="sc-icon">💬</div>
+        </div>
+        <div class="stat-card sc-green">
+          <div class="sc-label">Active Bookings</div>
+          <div class="sc-value">2</div>
+          <div class="sc-change neutral">trades confirmed</div>
+          <div class="sc-icon">📅</div>
+        </div>
+        <div class="stat-card sc-gold">
+          <div class="sc-label">Revenue (MTD)</div>
+          <div class="sc-value">GH₵ 8.4k</div>
+          <div class="sc-change up">↑ 18% from last month</div>
+          <div class="sc-icon">💰</div>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <!-- Recent activity -->
+        <div class="content-card">
+          <div class="cc-title">
+            Recent Inquiries
+            <a class="cc-action" onclick="gotoPage('bookings')">View all →</a>
+          </div>
+          <table class="data-table" id="dash-inquiries">
+            <thead><tr>
+              <th>Person</th><th>Property / Trade</th><th>Type</th><th>Status</th><th>Date</th>
+            </tr></thead>
+            <tbody id="inquiry-tbody"></tbody>
+          </table>
+        </div>
+
+        <!-- Quick actions + chart -->
+        <div style="display:flex;flex-direction:column;gap:16px;">
+          <div class="content-card">
+            <div class="cc-title">Inquiries — Last 7 Days</div>
+            <div class="bar-chart" id="inquiry-chart"></div>
+          </div>
+          <div class="content-card">
+            <div class="cc-title">Quick Actions</div>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <button class="btn btn-ghost" style="justify-content:flex-start;gap:10px;" onclick="openAddListing()">
+                🏠 Add a new listing
+              </button>
+              <button class="btn btn-ghost" style="justify-content:flex-start;gap:10px;" onclick="gotoPage('search')">
+                🔍 Browse all properties
+              </button>
+              <button class="btn btn-ghost" style="justify-content:flex-start;gap:10px;" onclick="gotoPage('ai')">
+                🤖 Ask AI Assistant
+              </button>
+              <button class="btn btn-ghost" style="justify-content:flex-start;gap:10px;" onclick="window.open('https://talentbridge-compliance.web.app','_blank')">
+                🎓 Get TBC Certified
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SEARCH ── -->
+    <div id="page-search" class="hidden">
+      <div class="page-hd">
+        <div>
+          <h1>Search</h1>
+          <p>Rentals, properties for sale, and verified tradespeople</p>
+        </div>
+      </div>
+
+      <!-- Search bar -->
+      <div style="background:var(--sand);border-radius:var(--radius-lg);padding:20px;margin-bottom:24px;display:flex;gap:12px;flex-wrap:wrap;">
+        <select class="form-input" style="flex:1;min-width:130px;" id="s-category">
+          <option value="rental">🏠 Rentals</option>
+          <option value="trade">🔧 Tradespeople</option>
+        </select>
+        <select class="form-input" style="flex:1;min-width:110px;" id="s-city">
+          <option>Accra</option><option>Kumasi</option>
+        </select>
+        <input class="form-input" style="flex:2;min-width:200px;" type="text" id="s-term" placeholder="Search area, property type, or trade..."/>
+        <button class="btn btn-clay" onclick="doSearch()">Search</button>
+      </div>
+
+      <!-- Mode switcher -->
+      <div class="mode-tabs" style="margin-bottom:20px;">
+        <button class="mode-tab active" id="sm-rental" onclick="switchSearchMode('rental')">🏠 Rentals</button>
+        <button class="mode-tab" id="sm-trade" onclick="switchSearchMode('trade')">🔧 Trades</button>
+      </div>
+
+      <div id="search-results-rental">
+        <div class="listings-grid" id="search-prop-grid"></div>
+      </div>
+
+      <div id="search-results-trade" class="hidden">
+        <div class="trades-grid" id="search-trade-grid"></div>
+      </div>
+    </div>
+
+    <!-- ── AI ASSISTANT ── -->
+    <div id="page-ai" class="hidden">
+      <div class="page-hd">
+        <div>
+          <h1>AI Assistant 🤖</h1>
+          <p>Describe what you need in plain English — I'll find it for you</p>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+        <div class="chat-wrap">
+          <div class="chat-header">
+            <div class="ai-dot">🏠</div>
+            <div class="chat-header-text">
+              <h3>HomeBase AI</h3>
+              <p>Your smart home & trades assistant</p>
+            </div>
+          </div>
+
+          <div class="chat-body" id="ai-chat-body">
+            <div class="chat-msg ai">
+              <div class="chat-ava">🤖</div>
+              <div class="chat-bubble">
+                Hello! I'm your HomeBase AI assistant. I can help you find rentals, book tradespeople, compare areas, and answer any property questions. What are you looking for? 🇬🇭
+              </div>
+            </div>
+          </div>
+
+          <div class="quick-prompts">
+            <button class="qp-btn" onclick="sendAI('Find me a 2-bedroom apartment in East Legon under GH₵ 3,000')">2-bed East Legon</button>
+            <button class="qp-btn" onclick="sendAI('I need a plumber in Kumasi urgently')">Urgent plumber</button>
+            <button class="qp-btn" onclick="sendAI('What areas in Accra are best for young professionals?')">Best areas Accra</button>
+            <button class="qp-btn" onclick="sendAI('Compare renting in Tema vs Spintex')">Tema vs Spintex</button>
+            <button class="qp-btn" onclick="sendAI('How much should I expect to pay for AC repairs in Accra?')">AC repair cost</button>
+          </div>
+
+          <div class="chat-input-row">
+            <input class="chat-txt" id="ai-txt" placeholder="Ask me anything about homes or trades..."
+              onkeydown="if(event.key==='Enter') sendAI()"/>
+            <button class="chat-send-btn" onclick="sendAI()">➤</button>
+          </div>
+        </div>
+
+        <!-- Tips card -->
+        <div style="display:flex;flex-direction:column;gap:16px;">
+          <div class="content-card">
+            <div class="cc-title">💡 Things to ask me</div>
+            <div style="display:flex;flex-direction:column;gap:10px;font-size:.88rem;color:var(--ink-lt);">
+              <div style="padding:10px;background:var(--sand);border-radius:var(--radius-sm);cursor:pointer;" onclick="sendAI('What documents do I need to rent a house in Ghana?')">
+                📋 "What documents do I need to rent in Ghana?"
+              </div>
+              <div style="padding:10px;background:var(--sand);border-radius:var(--radius-sm);cursor:pointer;" onclick="sendAI('How do I verify a landlord is legitimate?')">
+                🔒 "How do I verify a landlord is legitimate?"
+              </div>
+              <div style="padding:10px;background:var(--sand);border-radius:var(--radius-sm);cursor:pointer;" onclick="sendAI('What should I check before hiring an electrician?')">
+                ⚡ "What should I check before hiring an electrician?"
+              </div>
+              <div style="padding:10px;background:var(--sand);border-radius:var(--radius-sm);cursor:pointer;" onclick="sendAI('What is advance rent and is it legal in Ghana?')">
+                🤔 "Is 2-years advance rent legal in Ghana?"
+              </div>
+              <div style="padding:10px;background:var(--sand);border-radius:var(--radius-sm);cursor:pointer;" onclick="sendAI('What is a fair price for painting a 3-bedroom house in Accra?')">
+                🎨 "Fair price for painting a 3-bed in Accra?"
+              </div>
+            </div>
+          </div>
+
+          <div style="background:var(--ink);border-radius:var(--radius-lg);padding:20px;color:white;">
+            <div style="font-family:var(--font-display);font-weight:700;font-size:1rem;margin-bottom:6px;">🎓 TalentBridge Certified Pros</div>
+            <p style="font-size:.85rem;opacity:.65;margin-bottom:14px;">Tradespeople with TBC certification have completed EU AI Act & compliance training. They're our top-rated professionals.</p>
+            <button class="btn btn-clay btn-sm" onclick="window.open('https://talentbridge-compliance.web.app','_blank')">Learn more →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── MY LISTINGS ── -->
+    <div id="page-mylistings" class="hidden">
+      <div class="page-hd">
+        <div>
+          <h1>My Listings 📋</h1>
+          <p>Manage your properties and trade profile</p>
+        </div>
+        <button class="btn btn-clay" onclick="openAddListing()">+ Add listing</button>
+      </div>
+
+      <div class="mode-tabs" style="margin-bottom:24px;">
+        <button class="mode-tab active" id="ml-prop" onclick="switchMyListings('props')">🏠 Properties</button>
+        <button class="mode-tab" id="ml-trade" onclick="switchMyListings('trade')">🔧 Trade Profile</button>
+      </div>
+
+      <div id="my-props-list">
+        <div style="display:flex;flex-direction:column;gap:12px;" id="my-props-container"></div>
+      </div>
+
+      <div id="my-trade-profile" class="hidden">
+        <div class="content-card" style="max-width:560px;">
+          <div class="cc-title">Your Trade Profile</div>
+          <div class="form-group">
+            <label class="form-label">Trade / Specialty</label>
+            <select class="form-input">
+              <option>Plumbing</option><option>Electrical</option><option>Painting</option>
+              <option>Carpentry</option><option>AC Technician</option><option>Tiling</option><option>Welding</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Years of experience</label>
+            <input class="form-input" type="number" placeholder="5" min="0"/>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Service areas (cities/areas)</label>
+            <input class="form-input" placeholder="e.g. Accra, East Legon, Airport area"/>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Daily rate (GH₵)</label>
+            <input class="form-input" type="number" placeholder="250"/>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Bio</label>
+            <textarea class="form-input" rows="3" placeholder="Tell customers about your experience and skills..."></textarea>
+          </div>
+          <div style="display:flex;gap:10px;margin-top:8px;padding:14px;background:var(--success-lt);border-radius:var(--radius-sm);">
+            <div style="font-size:1.5rem;">🎓</div>
+            <div>
+              <div style="font-size:.85rem;font-weight:700;color:var(--success);">Get TBC Certified — stand out to clients</div>
+              <div style="font-size:.8rem;color:var(--success);opacity:.8;">Certified pros get 40% more inquiries on average.</div>
+            </div>
+            <button class="btn btn-sm" style="background:var(--success);color:white;white-space:nowrap;" onclick="window.open('https://talentbridge-compliance.web.app','_blank')">Get Certified</button>
+          </div>
+          <button class="btn btn-clay" style="margin-top:16px;width:100%;justify-content:center;" onclick="showToast('Trade profile saved! ✅')">
+            Save Profile
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── BOOKINGS ── -->
+    <div id="page-bookings" class="hidden">
+      <div class="page-hd">
+        <div>
+          <h1>Bookings & Inquiries 📅</h1>
+          <p>Track all your rental and trades activity</p>
+        </div>
+      </div>
+
+      <div class="mode-tabs" style="margin-bottom:24px;">
+        <button class="mode-tab active" id="bk-all" onclick="switchBookings('all')">All</button>
+        <button class="mode-tab" id="bk-trades" onclick="switchBookings('trades')">🔧 Trade Jobs</button>
+        <button class="mode-tab" id="bk-rental" onclick="switchBookings('rental')">🏠 Rental Inquiries</button>
+      </div>
+
+      <div class="content-card">
+        <table class="data-table" id="bookings-table">
+          <thead><tr>
+            <th>Type</th><th>Details</th><th>Person</th><th>Date</th><th>Status</th><th>Action</th>
+          </tr></thead>
+          <tbody id="bookings-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ── ANALYTICS ── -->
+    <div id="page-analytics" class="hidden">
+      <div class="page-hd">
+        <div>
+          <h1>Analytics 📊</h1>
+          <p>Track your listings performance and earnings</p>
+        </div>
+      </div>
+
+      <div class="stats-row">
+        <div class="stat-card sc-clay">
+          <div class="sc-label">Total Views</div>
+          <div class="sc-value" id="an-views">1,842</div>
+          <div class="sc-change up">↑ 23% this month</div>
+          <div class="sc-icon">👁️</div>
+        </div>
+        <div class="stat-card sc-ink">
+          <div class="sc-label">Conversion Rate</div>
+          <div class="sc-value">4.2%</div>
+          <div class="sc-change up">↑ 0.8% vs last month</div>
+          <div class="sc-icon">📈</div>
+        </div>
+        <div class="stat-card sc-green">
+          <div class="sc-label">Total Bookings</div>
+          <div class="sc-value">18</div>
+          <div class="sc-change up">↑ 5 this month</div>
+          <div class="sc-icon">✅</div>
+        </div>
+        <div class="stat-card sc-gold">
+          <div class="sc-label">Avg. Response Time</div>
+          <div class="sc-value">1.2h</div>
+          <div class="sc-change neutral">keep it under 2h</div>
+          <div class="sc-icon">⚡</div>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div class="content-card">
+          <div class="cc-title">Views per listing — Last 14 Days</div>
+          <div class="bar-chart" id="analytics-chart" style="height:130px;"></div>
+        </div>
+        <div class="content-card">
+          <div class="cc-title">Top performing listings</div>
+          <div id="top-listings-list"></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /app-body -->
+
+  <!-- Mobile bottom nav -->
+  <div class="mobile-bottom-nav">
+    <div class="mob-tabs">
+      <button class="mob-tab active" onclick="gotoPage('home')" id="mob-home"><span class="mt-icon">🏠</span>Home</button>
+      <button class="mob-tab" onclick="gotoPage('search')" id="mob-search"><span class="mt-icon">🔍</span>Search</button>
+      <button class="mob-tab" onclick="gotoPage('ai')" id="mob-ai"><span class="mt-icon">🤖</span>AI</button>
+      <button class="mob-tab" onclick="gotoPage('mylistings')" id="mob-mylistings"><span class="mt-icon">📋</span>Listings</button>
+      <button class="mob-tab" onclick="gotoPage('bookings')" id="mob-bookings"><span class="mt-icon">📅</span>Bookings</button>
+    </div>
+  </div>
+</div><!-- /app -->
+
+<!-- ═══════════════════════════════════════════════════════════
+     ADD LISTING MODAL
+═══════════════════════════════════════════════════════════ -->
+<div id="add-listing-modal" class="modal-backdrop hidden">
+  <div class="modal modal-lg">
+    <button class="modal-close" onclick="closeAddListing()">✕</button>
+    <div class="modal-title">Add a Listing</div>
+    <p class="modal-sub">List a property or create your tradesperson profile</p>
+
+    <div class="add-listing-tabs">
+      <button class="al-tab active" onclick="switchAddTab('property')" id="alt-property">🏠 Property</button>
+      <button class="al-tab" onclick="switchAddTab('trade')" id="alt-trade">🔧 Trade Service</button>
+    </div>
+
+    <!-- Property form -->
+    <div id="al-property-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Listing type *</label>
+          <select class="form-input" id="al-ptype">
+            <option>For Rent</option><option>For Sale</option><option>Short Stay</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Property type *</label>
+          <select class="form-input" id="al-proptype">
+            <option>Apartment</option><option>House</option><option>Studio</option>
+            <option>Room</option><option>Office space</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Title *</label>
+        <input class="form-input" type="text" id="al-title" placeholder="e.g. Modern 2-bedroom in East Legon"/>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">City *</label>
+          <select class="form-input" id="al-city">
+            <option>Accra</option><option>Kumasi</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Area/Neighbourhood *</label>
+          <input class="form-input" type="text" id="al-area" placeholder="e.g. East Legon, Cantonments"/>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Bedrooms</label>
+          <select class="form-input" id="al-beds">
+            <option>Studio</option><option>1</option><option>2</option><option>3</option><option>4+</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Price (GH₵/month) *</label>
+          <input class="form-input" type="number" id="al-price" placeholder="2500"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Description</label>
+        <textarea class="form-input" id="al-desc" rows="3" placeholder="Describe the property — security, utilities, parking, etc."></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">WhatsApp number for inquiries</label>
+        <input class="form-input" type="tel" id="al-wa" placeholder="+233 XX XXX XXXX"/>
+      </div>
+      <div style="display:flex;gap:10px;margin-top:8px;">
+        <button class="btn btn-outline" style="flex:1;justify-content:center;" onclick="closeAddListing()">Cancel</button>
+        <button class="btn btn-clay" style="flex:2;justify-content:center;" onclick="submitListing()">Publish Listing</button>
+      </div>
+    </div>
+
+    <!-- Trade service form -->
+    <div id="al-trade-form" class="hidden">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Trade / Service *</label>
+          <select class="form-input" id="al-trade">
+            <option>Plumbing</option><option>Electrical</option><option>Painting</option>
+            <option>Carpentry</option><option>AC Technician</option><option>Tiling</option>
+            <option>Welding</option><option>Roofing</option><option>Cleaning</option><option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">City</label>
+          <select class="form-input" id="al-trade-city">
+            <option>Accra</option><option>Kumasi</option><option>Both</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Your name *</label>
+        <input class="form-input" type="text" id="al-tradename" placeholder="e.g. Kwame Asante"/>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Years experience</label>
+          <input class="form-input" type="number" id="al-exp" placeholder="5" min="0"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Daily rate (GH₵)</label>
+          <input class="form-input" type="number" id="al-rate" placeholder="300"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">WhatsApp *</label>
+        <input class="form-input" type="tel" id="al-trade-wa" placeholder="+233 XX XXX XXXX"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Bio / What you offer</label>
+        <textarea class="form-input" id="al-tradebio" rows="3" placeholder="Describe your skills and experience..."></textarea>
+      </div>
+      <div style="display:flex;gap:10px;margin-top:8px;">
+        <button class="btn btn-outline" style="flex:1;justify-content:center;" onclick="closeAddListing()">Cancel</button>
+        <button class="btn btn-ink" style="flex:2;justify-content:center;" onclick="submitTradeListing()">Create Trade Profile</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Toast container -->
+<div id="toasts"></div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     FIREBASE + APP LOGIC
+═══════════════════════════════════════════════════════════ -->
+<script type="module">
+/*
+  FIREBASE SETUP:
+  1. firebase.google.com → Create project "homebase-ghana"
+  2. Enable Auth (Email/Password)
+  3. Enable Firestore (test mode)
+  4. Replace config below with your real values
+*/
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import {
+  getAuth, createUserWithEmailAndPassword,
+  signInWithEmailAndPassword, onAuthStateChanged,
+  signOut, updateProfile
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import {
+  getFirestore, collection, doc, addDoc, setDoc,
+  getDoc, getDocs, query, where, orderBy, limit,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+// ⬇️ REPLACE WITH YOUR FIREBASE CONFIG
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT.firebaseapp.com",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_PROJECT.appspot.com",
+  messagingSenderId: "YOUR_SENDER_ID",
+  appId: "YOUR_APP_ID"
+};
+
+let auth, db, useFirebase = false, currentUser = null;
+try {
+  const app = initializeApp(firebaseConfig);
+  auth = getAuth(app); db = getFirestore(app);
+  if (!firebaseConfig.apiKey.startsWith('YOUR')) {
+    useFirebase = true;
+  }
+} catch(e) { console.warn('Demo mode — Firebase not configured'); }
+
+// ═══════════════════════════════════════════
+// SAMPLE DATA
+// ═══════════════════════════════════════════
+const PROPERTIES = [
+  { id:'P1', title:'Modern 2-bed Apartment', type:'Apartment', city:'Accra', area:'East Legon', beds:2, baths:2, price:3500, furnished:true, gen:true, emoji:'🏢', gradient:'linear-gradient(135deg,#c8603a,#8b3a20)', host:'Ama K.', hostColor:'#c8603a', status:'available', tag:'New', desc:'Spacious, fully furnished 2-bedroom apartment in a quiet gated compound. 24/7 security, standby generator, parking included.' },
+  { id:'P2', title:'3-Bedroom House with Pool', type:'House', city:'Accra', area:'Cantonments', beds:3, baths:3, price:8500, furnished:true, gen:true, emoji:'🏡', gradient:'linear-gradient(135deg,#5b8fa8,#2d6e8e)', host:'Kofi A.', hostColor:'#2d6e8e', status:'available', tag:'Featured', desc:'Executive 3-bedroom house in Cantonments. Private pool, garden, and full staff quarters. Perfect for families or expats.' },
+  { id:'P3', title:'Cozy Studio — Airport Area', type:'Studio', city:'Accra', area:'Airport', beds:0, baths:1, price:1800, furnished:true, gen:false, emoji:'🏠', gradient:'linear-gradient(135deg,#6b9e6b,#3d7a3d)', host:'Efua M.', hostColor:'#3d7a3d', status:'available', tag:null, desc:'Compact, well-furnished studio near Kotoka Airport. Great for short stays or young professionals. Fibre WiFi included.' },
+  { id:'P4', title:'Executive 4-Bed Kumasi', type:'House', city:'Kumasi', area:'Ahodwo', beds:4, baths:4, price:5200, furnished:false, gen:true, emoji:'🏘️', gradient:'linear-gradient(135deg,#8b7355,#5a4a32)', host:'Yaw B.', hostColor:'#8b7355', status:'available', tag:null, desc:'Spacious unfurnished 4-bedroom house in Ahodwo, Kumasi. Large compound, 3 ensuite bedrooms, standby generator.' },
+  { id:'P5', title:'1-Bed in Spintex Road', type:'Apartment', city:'Accra', area:'Spintex', beds:1, baths:1, price:1400, furnished:false, gen:false, emoji:'🏗️', gradient:'linear-gradient(135deg,#c8a96a,#a07840)', host:'Adwoa S.', hostColor:'#a07840', status:'available', tag:'Hot deal', desc:'Affordable 1-bedroom in a popular Spintex compound house. Close to shopping, transport, and major roads.' },
+  { id:'P6', title:'Furnished Room — Tema', type:'Room', city:'Accra', area:'Tema Community 5', beds:1, baths:1, price:700, furnished:true, gen:false, emoji:'🛏️', gradient:'linear-gradient(135deg,#7c6b9e,#4a3d70)', host:'Kwame O.', hostColor:'#4a3d70', status:'available', tag:null, desc:'Clean furnished room in Tema. Shared kitchen and bathroom. Ideal for single professional or student.' },
+];
+
+const TRADES = [
+  { id:'T1', name:'Emmanuel Darko', specialty:'Plumber & Pipefitter', city:'Accra', areas:'East Legon, Airport, Osu', rate:350, exp:8, rating:4.9, reviews:67, emoji:'🔧', bg:'#e8f4ee', verified:true, tbc:true, skills:['Plumbing','Pipe fitting','Geyser install','Drainage'], phone:'+233201234567' },
+  { id:'T2', name:'Abena Mensah', specialty:'Electrical Contractor', city:'Accra', areas:'Cantonments, Labone, Tesano', rate:420, exp:11, rating:4.8, reviews:43, emoji:'⚡', bg:'#fff8e6', verified:true, tbc:true, skills:['Wiring','Sockets','Fuse boards','CCTV'], phone:'+233207654321' },
+  { id:'T3', name:'Kwabena Oti', specialty:'Painter & Decorator', city:'Accra', areas:'Accra Metro, Tema', rate:280, exp:6, rating:4.7, reviews:89, emoji:'🎨', bg:'#eef0fb', verified:true, tbc:false, skills:['Interior','Exterior','Texture','Wallpaper'], phone:'+233245678901' },
+  { id:'T4', name:'Ama Asante', specialty:'AC Technician', city:'Kumasi', areas:'Ahodwo, KNUST, Santasi', rate:300, exp:9, rating:4.9, reviews:55, emoji:'❄️', bg:'#e8f4fc', verified:true, tbc:true, skills:['AC install','Repairs','Servicing','Inverter'], phone:'+233256789012' },
+  { id:'T5', name:'Fiifi Boateng', specialty:'Carpenter & Joiner', city:'Accra', areas:'Dansoman, Mamprobi, Kaneshie', rate:320, exp:14, rating:4.6, reviews:112, emoji:'🪚', bg:'#f5eee6', verified:true, tbc:false, skills:['Furniture','Doors','Wardrobes','Decking'], phone:'+233267890123' },
+  { id:'T6', name:'Yaa Owusu', specialty:'Tiler & Floor Specialist', city:'Kumasi', areas:'Asokwa, Nhyiaeso, Suame', rate:250, exp:7, rating:4.8, reviews:38, emoji:'🏗️', bg:'#f0eef5', verified:true, tbc:false, skills:['Floor tiles','Wall tiles','Grout','Waterproofing'], phone:'+233278901234' },
+];
+
+const INQUIRIES = [
+  { person:'Akosua Boateng', item:'2-bed East Legon', type:'rental', status:'new', date:'Today, 9:15am' },
+  { person:'Kwame Asante', item:'AC repair service', type:'trade', status:'confirmed', date:'Today, 8:30am' },
+  { person:'Yaw Darko', item:'3-bed Cantonments', type:'rental', status:'viewed', date:'Yesterday' },
+  { person:'Ama Mensah', item:'Plumbing — Tema', type:'trade', status:'completed', date:'2 days ago' },
+  { person:'Efua Owusu', item:'Studio Airport Area', type:'rental', status:'new', date:'3 days ago' },
+];
+
+const BOOKINGS = [
+  { type:'trade', details:'Plumbing — fix bathroom tap', person:'Mr. Darko (Plumber)', date:'25 Mar 2025', status:'confirmed' },
+  { type:'rental', details:'2-bed East Legon inquiry', person:'Akosua Boateng', date:'24 Mar 2025', status:'new' },
+  { type:'trade', details:'Interior painting — 3 rooms', person:'Kwabena Oti (Painter)', date:'20 Mar 2025', status:'completed' },
+  { type:'rental', details:'1-bed Spintex showing', person:'Yaw Mensah', date:'18 Mar 2025', status:'completed' },
+  { type:'trade', details:'AC installation + service', person:'Ama Asante (AC Tech)', date:'15 Mar 2025', status:'completed' },
+];
+
+let currentRole = 'tenant';
+let filterMode = 'rental';
+let myListings = [...PROPERTIES.slice(0,3)];
+
+// ═══════════════════════════════════════════
+// SCROLL EFFECT
+// ═══════════════════════════════════════════
+window.addEventListener('scroll', () => {
+  document.getElementById('site-nav')?.classList.toggle('scrolled', window.scrollY > 20);
+});
+
+// ═══════════════════════════════════════════
+// LANDING PAGE LOGIC
+// ═══════════════════════════════════════════
+window.scrollToSection = (id) => {
+  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+};
+
+window.switchMode = (mode) => {
+  ['rent','buy','short'].forEach(m => document.getElementById(`tab-${m}`)?.classList.toggle('active', m === mode));
+};
+window.filterProps = () => {};
+
+window.filterTrades = (cat) => {
+  ['all','plumbing','electrical','painting','carpentry'].forEach(c => {
+    document.getElementById(`ttab-${c}`)?.classList.toggle('active', c === cat);
+  });
+  const filtered = cat === 'all' ? TRADES :
+    TRADES.filter(t => t.specialty.toLowerCase().includes(cat.slice(0,-3)));
+  renderTradesGrid('trades-grid', filtered);
+};
+
+// Render properties on landing
+function renderPropsGrid(id, data) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.innerHTML = data.slice(0,6).map(p => `
+    <div class="property-card" onclick="openAuth('signup')">
+      <div class="prop-img">
+        <div class="prop-img-bg" style="background:${p.gradient};">
+          <span style="font-size:3.5rem;opacity:.3;">${p.emoji}</span>
+        </div>
+        <div class="prop-img-overlay"></div>
+        ${p.tag ? `<div class="prop-tag"><span class="tag ${p.tag==='Featured'?'tag-clay':p.tag==='New'?'tag-ink':'tag-success'}">${p.tag}</span></div>` : ''}
+        <button class="prop-fav" onclick="event.stopPropagation()">♡</button>
+      </div>
+      <div class="prop-body">
+        <div class="prop-location">📍 ${p.area}, ${p.city}</div>
+        <div class="prop-title">${p.title}</div>
+        <div class="prop-features">
+          ${p.beds ? `<div class="prop-feat">🛏️ ${p.beds} bed${p.beds>1?'s':''}</div>` : '<div class="prop-feat">📦 Studio</div>'}
+          <div class="prop-feat">🚿 ${p.baths} bath</div>
+          ${p.furnished ? '<div class="prop-feat">🛋️ Furnished</div>' : ''}
+          ${p.gen ? '<div class="prop-feat">⚡ Gen</div>' : ''}
+        </div>
+        <div class="prop-footer">
+          <div class="prop-price">GH₵ ${p.price.toLocaleString()} <span>/ month</span></div>
+          <div class="prop-host">
+            <div class="host-avatar" style="background:${p.hostColor};">${p.host[0]}</div>
+            ${p.host}
+          </div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderTradesGrid(id, data) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.innerHTML = data.slice(0,6).map(t => `
+    <div class="trade-card" onclick="openAuth('signup')">
+      <div class="trade-header">
+        <div class="trade-avatar" style="background:${t.bg};">${t.emoji}</div>
+        <div class="trade-rating">
+          <div class="stars">${'★'.repeat(Math.floor(t.rating))}${'☆'.repeat(5-Math.floor(t.rating))}</div>
+          <div class="rating-count">${t.rating} (${t.reviews} reviews)</div>
+        </div>
+      </div>
+      <div class="trade-name">${t.name}${t.tbc ? ' <span style="font-size:.75rem;background:#e6f4ed;color:#1a7a4a;padding:2px 7px;border-radius:999px;font-weight:600;">TBC ✓</span>' : ''}</div>
+      <div class="trade-specialty">${t.specialty}</div>
+      <div class="trade-tags">
+        ${t.skills.map(s => `<span class="skill-tag">${s}</span>`).join('')}
+      </div>
+      <div class="trade-meta">
+        <div class="trade-location">📍 ${t.city} · ${t.exp}yrs exp</div>
+        <div class="trade-rate">GH₵ ${t.rate}/day</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+window.doHeroSearch = () => {
+  const type = document.getElementById('hs-type').value;
+  const city = document.getElementById('hs-city').value;
+  openAuth('signup');
+};
+window.quickSearch = (q) => openAuth('signup');
+window.quickSearchTrade = (q) => openAuth('signup');
+
+// Init landing page renders
+renderPropsGrid('prop-grid', PROPERTIES);
+renderTradesGrid('trades-grid', TRADES);
+
+// ═══════════════════════════════════════════
+// AUTH
+// ═══════════════════════════════════════════
+window.openAuth = (context) => {
+  const modal = document.getElementById('auth-modal');
+  modal.classList.remove('hidden');
+
+  if (context === 'list' || context === 'landlord') {
+    selectRoleByValue('landlord');
+    switchAuthTab('signup');
+  } else if (context === 'trade') {
+    selectRoleByValue('tradesperson');
+    switchAuthTab('signup');
+  } else if (context === 'login') {
+    switchAuthTab('login');
+  } else {
+    switchAuthTab('signup');
+  }
+};
+
+window.closeAuth = () => document.getElementById('auth-modal').classList.add('hidden');
+
+window.selectRole = (el, role) => {
+  document.querySelectorAll('.role-option').forEach(r => r.classList.remove('selected'));
+  el.classList.add('selected');
+  currentRole = role;
+};
+
+function selectRoleByValue(role) {
+  document.querySelectorAll('.role-option').forEach(r => {
+    r.classList.toggle('selected', r.dataset.role === role);
+  });
+  currentRole = role;
+}
+
+window.switchAuthTab = (tab) => {
+  document.getElementById('form-login').classList.toggle('hidden', tab !== 'login');
+  document.getElementById('form-signup').classList.toggle('hidden', tab !== 'signup');
+  document.getElementById('role-picker').classList.toggle('hidden', tab === 'login');
+  document.getElementById('atab-login').classList.toggle('active', tab === 'login');
+  document.getElementById('atab-signup').classList.toggle('active', tab === 'signup');
+  clearAuthErr();
+};
+
+function clearAuthErr() {
+  const e = document.getElementById('auth-error');
+  e.classList.add('hidden'); e.textContent = '';
+}
+function showAuthErr(msg) {
+  const e = document.getElementById('auth-error');
+  e.textContent = msg; e.classList.remove('hidden');
+}
+
+window.doLogin = async () => {
+  const email = document.getElementById('l-email').value.trim();
+  const pass = document.getElementById('l-pass').value;
+  if (!email || !pass) return showAuthErr('Please fill in all fields.');
+
+  const btn = document.getElementById('login-btn');
+  btn.innerHTML = '<span class="spinner"></span> Logging in...'; btn.disabled = true;
+
+  if (useFirebase) {
+    try {
+      await signInWithEmailAndPassword(auth, email, pass);
+    } catch(e) {
+      showAuthErr(authErrMsg(e.code));
+      btn.innerHTML = 'Log In'; btn.disabled = false;
+    }
+  } else {
+    setTimeout(() => loginSuccess({ displayName: 'Kofi Mensah', email, role: currentRole }), 700);
+  }
+};
+
+window.doSignup = async () => {
+  const first = document.getElementById('s-first').value.trim();
+  const last = document.getElementById('s-last').value.trim();
+  const phone = document.getElementById('s-phone').value.trim();
+  const email = document.getElementById('s-email').value.trim();
+  const pass = document.getElementById('s-pass').value;
+
+  if (!first || !email || !pass) return showAuthErr('Please fill in all required fields.');
+  if (pass.length < 6) return showAuthErr('Password must be at least 6 characters.');
+
+  const btn = document.getElementById('signup-btn');
+  btn.innerHTML = '<span class="spinner"></span> Creating account...'; btn.disabled = true;
+
+  const fullName = `${first} ${last}`.trim();
+
+  if (useFirebase) {
+    try {
+      const cred = await createUserWithEmailAndPassword(auth, email, pass);
+      await updateProfile(cred.user, { displayName: fullName });
+      await setDoc(doc(db, 'users', cred.user.uid), {
+        name: fullName, phone, email, role: currentRole,
+        plan: 'free', createdAt: serverTimestamp()
+      });
+    } catch(e) {
+      showAuthErr(authErrMsg(e.code));
+      btn.innerHTML = 'Create Account — It\'s Free'; btn.disabled = false;
+    }
+  } else {
+    setTimeout(() => loginSuccess({ displayName: fullName, email, role: currentRole }), 800);
+  }
+};
+
+function authErrMsg(code) {
+  return ({
+    'auth/user-not-found': 'No account found with this email.',
+    'auth/wrong-password': 'Incorrect password.',
+    'auth/email-already-in-use': 'An account with this email already exists.',
+    'auth/invalid-email': 'Please enter a valid email address.',
+    'auth/weak-password': 'Password must be at least 6 characters.',
+    'auth/too-many-requests': 'Too many attempts. Please try again later.',
+  })[code] || 'Something went wrong. Please try again.';
+}
+
+if (useFirebase && auth) {
+  onAuthStateChanged(auth, user => { if (user) loginSuccess(user); });
+}
+
+function loginSuccess(user) {
+  currentUser = user;
+  closeAuth();
+  document.getElementById('landing').classList.add('hidden');
+  document.getElementById('app').classList.remove('hidden');
+
+  const name = (user.displayName || 'User').split(' ')[0];
+  document.getElementById('user-name-display').textContent = name;
+  document.getElementById('user-ava').textContent = name[0].toUpperCase();
+
+  const h = new Date().getHours();
+  const g = h < 12 ? 'morning' : h < 17 ? 'afternoon' : 'evening';
+  document.getElementById('dash-greeting').textContent = `Good ${g}, ${name}! 👋`;
+
+  gotoPage('home');
+}
+
+window.logoutToLanding = async () => {
+  if (useFirebase) await signOut(auth);
+  currentUser = null;
+  document.getElementById('app').classList.add('hidden');
+  document.getElementById('landing').classList.remove('hidden');
+  window.scrollTo(0, 0);
+};
+
+// ═══════════════════════════════════════════
+// APP NAVIGATION
+// ═══════════════════════════════════════════
+const APP_PAGES = ['home','search','ai','mylistings','bookings','analytics'];
+
+window.gotoPage = (page) => {
+  APP_PAGES.forEach(p => {
+    document.getElementById(`page-${p}`)?.classList.toggle('hidden', p !== page);
+    document.getElementById(`nav-${p}`)?.classList.toggle('active', p === page);
+    document.getElementById(`mob-${p}`)?.classList.toggle('active', p === page);
+  });
+  if (page === 'home') renderDashboard();
+  if (page === 'search') renderSearch();
+  if (page === 'mylistings') renderMyListings();
+  if (page === 'bookings') renderBookings();
+  if (page === 'analytics') renderAnalytics();
+};
+
+// ═══════════════════════════════════════════
+// DASHBOARD
+// ═══════════════════════════════════════════
+function renderDashboard() {
+  const tbody = document.getElementById('inquiry-tbody');
+  tbody.innerHTML = INQUIRIES.map(i => `
+    <tr>
+      <td><strong>${i.person}</strong></td>
+      <td>${i.item}</td>
+      <td><span class="badge ${i.type==='rental'?'badge-clay':'badge-ink'}">${i.type}</span></td>
+      <td><span class="badge ${i.status==='new'?'badge-clay':i.status==='confirmed'?'badge-green':i.status==='completed'?'badge-ink':'badge-warning'}">${i.status}</span></td>
+      <td style="color:var(--ink-lt);font-size:.82rem;">${i.date}</td>
+    </tr>
+  `).join('');
+
+  // Inquiry chart
+  const vals = [3, 7, 5, 9, 4, 8, 12];
+  const days = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+  const max = Math.max(...vals);
+  document.getElementById('inquiry-chart').innerHTML = vals.map((v,i) => `
+    <div class="bc-col">
+      <div class="bc-bar clay" style="height:${Math.max(6,(v/max)*88)}px;"></div>
+      <div class="bc-label">${days[i]}</div>
+    </div>
+  `).join('');
+}
+
+// ═══════════════════════════════════════════
+// SEARCH PAGE
+// ═══════════════════════════════════════════
+function renderSearch() {
+  renderSearchProps(PROPERTIES);
+  renderSearchTrades(TRADES);
+}
+
+function renderSearchProps(data) {
+  const el = document.getElementById('search-prop-grid');
+  if (!el) return;
+  el.innerHTML = data.map(p => `
+    <div class="property-card">
+      <div class="prop-img">
+        <div class="prop-img-bg" style="background:${p.gradient};">
+          <span style="font-size:3.5rem;opacity:.3;">${p.emoji}</span>
+        </div>
+        <div class="prop-img-overlay"></div>
+        ${p.tag ? `<div class="prop-tag"><span class="tag tag-clay">${p.tag}</span></div>` : ''}
+        <button class="prop-fav">♡</button>
+      </div>
+      <div class="prop-body">
+        <div class="prop-location">📍 ${p.area}, ${p.city}</div>
+        <div class="prop-title">${p.title}</div>
+        <div class="prop-features">
+          ${p.beds ? `<div class="prop-feat">🛏️ ${p.beds} bed</div>` : '<div class="prop-feat">Studio</div>'}
+          <div class="prop-feat">🚿 ${p.baths} bath</div>
+          ${p.furnished ? '<div class="prop-feat">🛋️ Furnished</div>' : ''}
+        </div>
+        <div class="prop-footer">
+          <div class="prop-price">GH₵ ${p.price.toLocaleString()} <span>/ month</span></div>
+          <button class="btn btn-clay btn-sm" onclick="contactViaWhatsApp('${p.host}','property','${p.title}')">
+            💬 WhatsApp
+          </button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderSearchTrades(data) {
+  const el = document.getElementById('search-trade-grid');
+  if (!el) return;
+  el.innerHTML = data.map(t => `
+    <div class="trade-card">
+      <div class="trade-header">
+        <div class="trade-avatar" style="background:${t.bg};">${t.emoji}</div>
+        <div class="trade-rating">
+          <div class="stars">${'★'.repeat(Math.floor(t.rating))}${'☆'.repeat(5-Math.floor(t.rating))}</div>
+          <div class="rating-count">${t.rating} (${t.reviews})</div>
+        </div>
+      </div>
+      <div class="trade-name">${t.name}</div>
+      <div class="trade-specialty">${t.specialty}</div>
+      ${t.tbc ? '<div style="margin-bottom:8px;"><span class="verified-badge">🎓 TBC Certified</span></div>' : ''}
+      <div class="trade-tags">
+        ${t.skills.map(s => `<span class="skill-tag">${s}</span>`).join('')}
+      </div>
+      <div class="trade-meta">
+        <div class="trade-location">📍 ${t.city}</div>
+        <div class="trade-rate">GH₵ ${t.rate}/day</div>
+      </div>
+      <button class="btn btn-ink btn-sm" style="width:100%;margin-top:12px;justify-content:center;" onclick="contactViaWhatsApp('${t.name}','trade','${t.specialty}')">
+        💬 Book via WhatsApp
+      </button>
+    </div>
+  `).join('');
+}
+
+window.switchSearchMode = (mode) => {
+  filterMode = mode;
+  document.getElementById('sm-rental').classList.toggle('active', mode === 'rental');
+  document.getElementById('sm-trade').classList.toggle('active', mode === 'trade');
+  document.getElementById('search-results-rental').classList.toggle('hidden', mode !== 'rental');
+  document.getElementById('search-results-trade').classList.toggle('hidden', mode !== 'trade');
+};
+
+window.doSearch = () => {
+  const term = document.getElementById('s-term').value.toLowerCase();
+  const city = document.getElementById('s-city').value;
+  if (filterMode === 'rental') {
+    const r = PROPERTIES.filter(p =>
+      (!term || p.title.toLowerCase().includes(term) || p.area.toLowerCase().includes(term)) &&
+      (p.city === city)
+    );
+    renderSearchProps(r.length ? r : PROPERTIES);
+  } else {
+    const t = TRADES.filter(t =>
+      (!term || t.specialty.toLowerCase().includes(term) || t.name.toLowerCase().includes(term)) &&
+      (t.city === city)
+    );
+    renderSearchTrades(t.length ? t : TRADES);
+  }
+  showToast(`🔍 Search results updated`);
+};
+
+window.contactViaWhatsApp = (name, type, detail) => {
+  const msg = encodeURIComponent(`Hello! I found you on HomeBase Ghana. I'm interested in your ${type === 'trade' ? 'services' : 'property'}: "${detail}". Can we discuss further?`);
+  window.open(`https://wa.me/?text=${msg}`, '_blank');
+  showToast(`Opening WhatsApp to contact ${name}...`);
+};
+
+// ═══════════════════════════════════════════
+// AI ASSISTANT
+// ═══════════════════════════════════════════
+window.sendAI = async (preset) => {
+  const input = document.getElementById('ai-txt');
+  const text = preset || input.value.trim();
+  if (!text) return;
+  input.value = '';
+
+  appendChat('user', text);
+  const typId = appendTyping();
+
+  try {
+    const reply = await callAI(text);
+    removeTyping(typId);
+    appendChat('ai', reply);
+  } catch(e) {
+    removeTyping(typId);
+    appendChat('ai', getFallbackAIResponse(text));
+  }
+};
+
+function appendChat(role, text) {
+  const body = document.getElementById('ai-chat-body');
+  const div = document.createElement('div');
+  div.className = `chat-msg ${role}`;
+  const ava = role === 'user'
+    ? `<div class="chat-ava" style="background:var(--ink);color:white;">${(currentUser?.displayName||'U')[0].toUpperCase()}</div>`
+    : `<div class="chat-ava">🤖</div>`;
+  div.innerHTML = `${ava}<div class="chat-bubble">${text.replace(/\n/g,'<br/>')}</div>`;
+  body.appendChild(div);
+  body.scrollTop = body.scrollHeight;
+}
+
+function appendTyping() {
+  const id = 'typ-' + Date.now();
+  const body = document.getElementById('ai-chat-body');
+  const div = document.createElement('div');
+  div.className = 'chat-msg ai'; div.id = id;
+  div.innerHTML = `<div class="chat-ava">🤖</div><div class="chat-bubble"><div class="typing"><span></span><span></span><span></span></div></div>`;
+  body.appendChild(div);
+  body.scrollTop = body.scrollHeight;
+  return id;
+}
+function removeTyping(id) { document.getElementById(id)?.remove(); }
+
+async function callAI(msg) {
+  const ctx = `
+Properties: ${JSON.stringify(PROPERTIES.map(p => ({title:p.title, city:p.city, area:p.area, beds:p.beds, price:p.price, furnished:p.furnished})))}
+Tradespeople: ${JSON.stringify(TRADES.map(t => ({name:t.name, specialty:t.specialty, city:t.city, rate:t.rate, rating:t.rating})))}
+  `;
+  const res = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      model: 'claude-sonnet-4-20250514',
+      max_tokens: 1000,
+      system: `You are HomeBase AI, a helpful assistant for HomeBase Ghana — a platform connecting people to verified rentals and trusted tradespeople in Accra and Kumasi, Ghana.
+
+Current listings data:
+${ctx}
+
+Guidelines:
+- Always mention specific properties or tradespeople when relevant
+- Use GH₵ for prices
+- Be warm, concise, and helpful
+- For rental advice, mention things like advance rent laws, tenant rights in Ghana
+- For trades, mention importance of getting quotes, TalentBridge certification
+- Occasionally suggest signing up to contact landlords/tradespeople directly
+- Keep responses under 200 words`,
+      messages: [{ role: 'user', content: msg }]
+    })
+  });
+  if (!res.ok) throw new Error('API error');
+  const d = await res.json();
+  return d.content[0].text;
+}
+
+function getFallbackAIResponse(input) {
+  const q = input.toLowerCase();
+  if (q.includes('2-bedroom') || q.includes('2 bed')) {
+    return `Great choice! Here are our 2-bedroom options:\n\n🏢 **Modern 2-bed, East Legon** — GH₵ 3,500/mo. Fully furnished, generator.\n🏡 **3-bed in Cantonments** — GH₵ 8,500/mo (3-bed, for larger budget).\n\nFor East Legon, expect GH₵ 2,500–5,000/month for a 2-bed. Most landlords require 1-2 years advance. Log in to contact landlords directly via WhatsApp! 🏠`;
+  }
+  if (q.includes('plumber') || q.includes('plumbing')) {
+    return `I found great plumbers for you! 🔧\n\n⭐ **Emmanuel Darko** — 4.9 stars, 8yrs exp, Accra. GH₵ 350/day. TBC Certified.\n\nTips for hiring a plumber in Ghana:\n• Always get a written quote first\n• Check they have their own tools\n• Ask for references from recent jobs\n• Pay 50% upfront, 50% on completion\n\nWant me to connect you via WhatsApp?`;
+  }
+  if (q.includes('best area') || q.includes('where to live')) {
+    return `Great question about Accra neighbourhoods! 🇬🇭\n\n**For young professionals:**\n• Airport/Dzorwulu — central, quick access to everywhere\n• Osu — vibrant, walkable, restaurants nearby\n• Spintex — more affordable, good transport links\n\n**For families:**\n• East Legon — quiet, gated estates, good schools\n• Cantonments — prestige area, embassy zone\n• Tema — spacious, more affordable, sea breeze\n\nWhat's your budget and commute destination? I can narrow it down!`;
+  }
+  if (q.includes('advance rent') || q.includes('2 years')) {
+    return `Important question! 📋 Here's what you should know:\n\n**Ghana Rent Act (Act 220):** Landlords legally cannot demand more than **6 months advance rent** for residential properties.\n\n However, in practice many demand 1-2 years, especially in Accra. If you can negotiate to 6 months, that's your legal right.\n\n**Tips:**\n• Always sign a tenancy agreement\n• Get receipts for all payments\n• Check the Rent Control Department website for your rights\n\nHomeBase only works with landlords who follow the law. 🏠`;
+  }
+  return `I can help you with:\n\n🏠 **Finding rentals** — tell me your city, area, budget\n🔧 **Booking trades** — plumbers, electricians, painters, AC techs\n📋 **Ghana property tips** — advance rent, tenant rights, documents needed\n💡 **Comparing areas** — which neighbourhoods suit your lifestyle\n\nWhat are you looking for today?`;
+}
+
+// ═══════════════════════════════════════════
+// MY LISTINGS
+// ═══════════════════════════════════════════
+window.switchMyListings = (tab) => {
+  document.getElementById('ml-prop').classList.toggle('active', tab === 'props');
+  document.getElementById('ml-trade').classList.toggle('active', tab === 'trade');
+  document.getElementById('my-props-list').classList.toggle('hidden', tab !== 'props');
+  document.getElementById('my-trade-profile').classList.toggle('hidden', tab !== 'trade');
+};
+
+function renderMyListings() {
+  const el = document.getElementById('my-props-container');
+  el.innerHTML = myListings.map(p => `
+    <div class="listing-manage-card">
+      <div class="lm-thumb" style="background:${p.gradient};">${p.emoji}</div>
+      <div class="lm-info">
+        <div class="lm-title">${p.title}</div>
+        <div class="lm-meta">📍 ${p.area}, ${p.city} · GH₵ ${p.price.toLocaleString()}/mo</div>
+      </div>
+      <span class="badge badge-green">Active</span>
+      <div style="display:flex;gap:6px;">
+        <button class="btn btn-ghost btn-sm" onclick="showToast('Edit listing coming soon')">Edit</button>
+        <button class="btn btn-clay btn-sm" onclick="showToast('Listing promoted! 🚀')">Boost</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ═══════════════════════════════════════════
+// BOOKINGS
+// ═══════════════════════════════════════════
+window.switchBookings = (tab) => {
+  ['all','trades','rental'].forEach(t => document.getElementById(`bk-${t}`)?.classList.toggle('active', t === tab));
+  const filtered = tab === 'all' ? BOOKINGS :
+    BOOKINGS.filter(b => tab === 'trades' ? b.type === 'trade' : b.type === 'rental');
+  renderBookingsTable(filtered);
+};
+
+function renderBookings() { renderBookingsTable(BOOKINGS); }
+
+function renderBookingsTable(data) {
+  document.getElementById('bookings-tbody').innerHTML = data.map(b => `
+    <tr>
+      <td><span class="badge ${b.type==='trade'?'badge-ink':'badge-clay'}">${b.type}</span></td>
+      <td style="max-width:200px;">${b.details}</td>
+      <td>${b.person}</td>
+      <td style="color:var(--ink-lt);font-size:.82rem;">${b.date}</td>
+      <td><span class="badge ${b.status==='confirmed'?'badge-green':b.status==='completed'?'badge-ink':b.status==='new'?'badge-clay':'badge-warning'}">${b.status}</span></td>
+      <td>
+        ${b.status === 'new' ? `<button class="btn btn-clay btn-sm" onclick="showToast('Booking confirmed! ✅')">Confirm</button>` :
+          b.status === 'confirmed' ? `<button class="btn btn-ghost btn-sm" onclick="showToast('Marked complete ✅')">Complete</button>` :
+          `<button class="btn btn-ghost btn-sm" onclick="showToast('Review requested')">Review</button>`}
+      </td>
+    </tr>
+  `).join('');
+}
+
+// ═══════════════════════════════════════════
+// ANALYTICS
+// ═══════════════════════════════════════════
+function renderAnalytics() {
+  const vals = [42,65,38,89,55,71,48,93,62,78,55,84,70,110];
+  const labels = Array.from({length:14}, (_,i) => `${14-i}d`).reverse();
+  labels[13] = 'Today';
+  const max = Math.max(...vals);
+  document.getElementById('analytics-chart').innerHTML = vals.map((v,i) => `
+    <div class="bc-col">
+      <div class="bc-bar ${i===13?'clay':'ink'}" style="height:${Math.max(4,(v/max)*118)}px;opacity:${i===13?1:.7};"></div>
+      <div class="bc-label">${i % 2 === 0 ? labels[i] : ''}</div>
+    </div>
+  `).join('');
+
+  document.getElementById('top-listings-list').innerHTML = myListings.map((p,i) => `
+    <div class="product-row" style="display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--sand);">
+      <div style="width:28px;height:28px;border-radius:8px;background:${p.gradient};display:grid;place-items:center;font-size:.9rem;">${p.emoji}</div>
+      <div style="flex:1">
+        <div style="font-weight:600;font-size:.88rem;">${p.title}</div>
+        <div style="font-size:.78rem;color:var(--ink-lt);">${[124,89,67][i]} views · ${[12,8,4][i]} inquiries</div>
+      </div>
+      <div style="font-weight:700;font-size:.9rem;">GH₵ ${p.price.toLocaleString()}</div>
+    </div>
+  `).join('');
+}
+
+// ═══════════════════════════════════════════
+// ADD LISTING MODAL
+// ═══════════════════════════════════════════
+window.openAddListing = () => {
+  document.getElementById('add-listing-modal').classList.remove('hidden');
+};
+window.closeAddListing = () => {
+  document.getElementById('add-listing-modal').classList.add('hidden');
+};
+
+window.switchAddTab = (tab) => {
+  document.getElementById('alt-property').classList.toggle('active', tab === 'property');
+  document.getElementById('alt-trade').classList.toggle('active', tab === 'trade');
+  document.getElementById('al-property-form').classList.toggle('hidden', tab !== 'property');
+  document.getElementById('al-trade-form').classList.toggle('hidden', tab !== 'trade');
+};
+
+window.submitListing = () => {
+  const title = document.getElementById('al-title').value.trim();
+  const city = document.getElementById('al-city').value;
+  const area = document.getElementById('al-area').value.trim();
+  const price = document.getElementById('al-price').value;
+
+  if (!title || !area || !price) {
+    showToast('Please fill in all required fields.', 'error'); return;
+  }
+
+  const gradients = [
+    'linear-gradient(135deg,#c8603a,#8b3a20)',
+    'linear-gradient(135deg,#5b8fa8,#2d6e8e)',
+    'linear-gradient(135deg,#6b9e6b,#3d7a3d)',
+    'linear-gradient(135deg,#8b7355,#5a4a32)',
+  ];
+  const emojis = ['🏢','🏡','🏠','🏘️'];
+  const idx = myListings.length % 4;
+
+  myListings.push({
+    id: 'P' + Date.now(), title, city, area,
+    beds: parseInt(document.getElementById('al-beds').value) || 1,
+    baths: 1, price: parseFloat(price),
+    furnished: false, gen: false,
+    emoji: emojis[idx], gradient: gradients[idx],
+    host: (currentUser?.displayName || 'You').split(' ')[0] + ' (you)',
+    hostColor: '#c8603a', status: 'active', tag: 'New'
+  });
+
+  closeAddListing();
+  showToast(`✅ "${title}" published!`);
+  gotoPage('mylistings');
+};
+
+window.submitTradeListing = () => {
+  const name = document.getElementById('al-tradename').value.trim();
+  const trade = document.getElementById('al-trade').value;
+  if (!name) { showToast('Please enter your name.', 'error'); return; }
+  closeAddListing();
+  showToast(`✅ Trade profile created for ${name} — ${trade}!`);
+};
+
+// ═══════════════════════════════════════════
+// TOASTS
+// ═══════════════════════════════════════════
+window.showToast = (msg, type = '') => {
+  const container = document.getElementById('toasts');
+  const toast = document.createElement('div');
+  toast.className = `toast ${type}`;
+  toast.textContent = msg;
+  container.appendChild(toast);
+  setTimeout(() => toast.remove(), 4000);
+};
+
+</script>
+</body>
+</html>
